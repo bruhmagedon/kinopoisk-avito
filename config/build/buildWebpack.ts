@@ -1,56 +1,28 @@
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import webpack from "webpack";
+import { buildDevServer } from "./buildDevServer";
+import { buildLoaders } from "./buildLoaders";
+import { buildPlugins } from "./buildPlugins";
+import { buildResolvers } from "./buildResolver";
+import { BuildOptions } from "./types/types";
 
-export function buildWebpack(options): webpack.Configuration {
+export function buildWebpack(options: BuildOptions): webpack.Configuration {
+  const { mode, paths } = options;
+  const isDev = mode === "development";
+
   return {
-    mode: env.mode ?? "development",
-    entry: path.resolve(__dirname, "src", "index"),
+    mode: mode ?? "development",
+    entry: paths.entry,
     output: {
-      path: path.resolve(__dirname, "build"),
+      path: paths.output,
       filename: "[name].[contenthash].js",
       clean: true,
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public", "index.html"),
-      }),
-      isDev && new webpack.ProgressPlugin(),
-      !isDev &&
-        new MiniCssExtractPlugin({
-          filename: "css/[name].[contenthash:8].css",
-          chunkFilename: "css/[name].[contenthash:8].css",
-        }),
-    ].filter(Boolean),
+    plugins: buildPlugins(options),
     module: {
-      rules: [
-        {
-          test: /\.css$/i,
-          use: [
-            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-            "css-loader",
-            "postcss-loader",
-          ],
-        },
-        {
-          test: /\.tsx?$/,
-          use: "ts-loader",
-          exclude: /node_modules/,
-        },
-      ],
+      rules: buildLoaders(options),
     },
-    resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-    },
+    resolve: buildResolvers(options),
     devtool: isDev && "inline-source-map",
-    devServer: {
-      port: 7070,
-      open: true,
-      hot: true,
-      compress: true,
-      historyApiFallback: true,
-    },
+    devServer: isDev ? buildDevServer(options) : undefined,
   };
 }

@@ -2,8 +2,12 @@ export default {
   content: ["./build/*.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        primary: "#ABAEEE",
+        "primary-bg": "#ABAEEE",
+      },
       gridTemplateColumns: {
-        "2-fixed": "425px 650px",
+        "filter-list": "1fr 4fr",
       },
     },
   },

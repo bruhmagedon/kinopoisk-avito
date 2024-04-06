@@ -4,6 +4,6 @@
 
 @layer components {
   .column-gap {
-    column-gap: 25px;
+    column-gap: 24px;
   }
 }

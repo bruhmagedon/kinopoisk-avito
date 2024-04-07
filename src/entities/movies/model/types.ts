@@ -1,4 +1,12 @@
-export interface MovieApiResponse {
+export interface MoviesApiResponse {
+  docs: MovieIdApiResponse[];
+  limit: number;
+  page: number;
+  pages: number;
+  total: number;
+}
+
+export interface MovieIdApiResponse {
   id: number; //Id фильма с кинопоиска
   externalId: ExternalId;
   name?: string;

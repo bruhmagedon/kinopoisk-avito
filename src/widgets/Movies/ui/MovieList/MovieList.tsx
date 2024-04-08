@@ -1,6 +1,6 @@
-import { MovieIdApiResponse, MoviesApiResponse } from "@/entities/movies";
+import { MovieIdApiResponse } from "@/entities/movies";
 import withSkelton from "@/shared/hooks/withSkeleton";
-import { MovieCard } from "@/widgets/MovieCard";
+import { MovieCard } from "../MovieCard/MovieCard";
 
 interface MovieListProps {
   data?: MovieIdApiResponse[] | null;

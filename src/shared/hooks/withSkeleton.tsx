@@ -1,13 +1,5 @@
+import { SkeletonType } from "../interfaces";
 import { Skeleton } from "../ui/Skeleton";
-
-type SkeletonType = "settings" | "list";
-
-// interface HookProps<P> {
-//   Component: ;
-//   ; //№Более конкретно уточнить тип до литералов
-//  ;
-//   //   direction?: string; //№Тоже самое
-// }
 
 interface ChildProps {
   isLoading: boolean;

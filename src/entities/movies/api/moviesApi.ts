@@ -29,7 +29,6 @@ export const movieApi = createApi({
           },
         };
       },
-
       // Сохранение результатов в стор (досмотреть видос)
       //   async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
       //     const result = await queryFulfilled;

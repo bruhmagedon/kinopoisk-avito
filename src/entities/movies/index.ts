@@ -1,2 +1,5 @@
-export { MoviesApiResponse, MovieIdApiResponse } from "./model/types";
-export { useFetchAllMoviesQuery } from "./api/moviesApi";
+import { MovieIdApiResponse } from "./model/MovieTypes";
+import { MoviesApiResponse } from "./model/MovieApiTypes";
+import { useFetchAllMoviesQuery } from "./api/moviesApi";
+
+export { MovieIdApiResponse, MoviesApiResponse, useFetchAllMoviesQuery };

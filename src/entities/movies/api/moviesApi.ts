@@ -1,15 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { MoviesApiResponse, MovieIdApiResponse } from "../model/types";
+import { MoviesApiResponse, ParamsType } from "../model/MovieApiTypes";
+import { MovieIdApiResponse } from "../model/MovieTypes";
 
 // const BASE_URL = process.env.MOVIES_BASE_API_URL;
 // const API_KEY = process.env.MOVIES_API_KEY;
 // №Ключ и ссылка пока захардкожены - позже надо это исправить
-
-export interface IFilters {
-  page?: number;
-  limit?: number;
-}
-type ParamsType = Partial<IFilters>;
 
 export const movieApi = createApi({
   reducerPath: "movieApi",
@@ -22,10 +17,9 @@ export const movieApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    // null меняется на параметры
     fetchAllMovies: builder.query<MoviesApiResponse, ParamsType>({
       query: (params) => {
-        const { page = 1, limit = 10 } = params || {};
+        const { page = 1, limit = 10 } = params;
 
         return {
           url: `movie`,

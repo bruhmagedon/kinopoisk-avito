@@ -6,4 +6,7 @@
   .column-gap {
     column-gap: 24px;
   }
+  .skeleton {
+    @apply w-full animate-pulse list-none bg-gray-200;
+  }
 }

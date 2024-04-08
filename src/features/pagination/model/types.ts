@@ -1,0 +1,10 @@
+export interface IPaginationProps {
+  totalPages: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  handleNextPage?: () => void;
+  handlePrevPage?: () => void;
+  handlePageClick?: (pageNumber: number) => void;
+  handleStartPage?: () => void;
+  handleEndPage?: () => void;
+  currentPage: number;
+}

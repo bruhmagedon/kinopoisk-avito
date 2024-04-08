@@ -1,11 +1,12 @@
 import { useFetchAllMoviesQuery } from "@/entities/movies";
-import { Pagination } from "@/shared/ui/Pagination";
-import { MovieList } from "@/widgets/Movies";
-import { useEffect, useState } from "react";
+import { PaginationWrapper } from "@/features/pagination";
+import { LoadMoreButton } from "@/shared";
 
-interface MoviePanelProps {}
+import { MovieList } from "@/widgets/Movies";
+import { useState } from "react";
 
 export const MoviePanel = () => {
+  const TOTAL = 10; // Брать из  апи
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading } = useFetchAllMoviesQuery({
@@ -13,26 +14,16 @@ export const MoviePanel = () => {
     page: currentPage,
   });
 
-  const handleNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => prev - 1);
-  };
-  const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-  };
-
   return (
     <section className="flex flex-col gap-12">
-      <MovieList data={data && data.docs} isLoading={isLoading} />
-      <Pagination
+      <LoadMoreButton />
+      <PaginationWrapper
         currentPage={currentPage}
-        handleNextPage={handleNextPage}
-        handlePageClick={handlePageClick}
-        handlePrevPage={handlePrevPage}
-        totalPages={10} //тоже чето типо редакса (но пока хз)
-      />
+        setCurrentPage={setCurrentPage}
+        totalPages={TOTAL} //тоже чето типо редакса (но пока хз)
+      >
+        {<MovieList data={data && data.docs} isLoading={isLoading} />}
+      </PaginationWrapper>
     </section>
   );
 };

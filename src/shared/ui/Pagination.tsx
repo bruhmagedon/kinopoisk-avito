@@ -27,7 +27,6 @@ export const Pagination = ({
           {"<"}
         </button>
         <div className="flex items-center justify-center ">
-          {/* пустой массив размера количества страниц */}
           {[...Array(totalPages)].map((_, index) => {
             const activePage = currentPage === index + 1;
 

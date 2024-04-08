@@ -6,4 +6,13 @@
   .column-gap {
     column-gap: 24px;
   }
+  .skeleton {
+    @apply w-full animate-pulse list-none bg-gray-200;
+  }
+  .paggination-button {
+    @apply border-none bg-white cursor-pointer disabled:cursor-auto min-w-[45px] h-[45px] flex justify-center items-center;
+  }
+  .pagination-button-hover {
+    @apply hover:border-solid hover:border-2 hover:border-red-400 rounded-full;
+  }
 }

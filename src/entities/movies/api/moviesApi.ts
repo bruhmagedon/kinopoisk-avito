@@ -1,19 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { MoviesApiResponse, ParamsType } from "../model/MovieApiTypes";
-import { MovieIdApiResponse } from "../model/MovieTypes";
+import {
+  MoviesApiResponse,
+  MovieParamsType,
+  FiltersApiResponse,
+  FilterParams,
+  Filter,
+} from "../model/MovieApiTypes";
+
+const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
 
 export const movieApi = createApi({
   reducerPath: "movieApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.API_BASE_URL,
+    // №Env работает как то неправильно!, потом пофиксить
+    baseUrl: "https://api.kinopoisk.dev/v1.4/",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
-      headers.set("X-API-KEY", process.env.API_TOKEN);
+      headers.set("X-API-KEY", X_API_KEY);
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    fetchAllMovies: builder.query<MoviesApiResponse, ParamsType>({
+    fetchAllMovies: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
         const { page = 1, limit = 10 } = params;
 
@@ -33,15 +41,34 @@ export const movieApi = createApi({
       //     dispatch(setNews(data.news));
       //   },
     }),
-    fetchMoviesById: builder.query<MovieIdApiResponse, null>({
+  }),
+});
+
+export const { useFetchAllMoviesQuery } = movieApi;
+
+export const filterApi = createApi({
+  reducerPath: "filterApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api.kinopoisk.dev/v1/",
+    prepareHeaders: (headers) => {
+      headers.set("Content-Type", "application/json");
+      headers.set("X-API-KEY", X_API_KEY);
+      return headers;
+    },
+  }),
+  endpoints: (builder) => ({
+    fetchFilters: builder.query<Filter[], FilterParams>({
       query: (params) => {
-        // const { id } = params;
+        const { field } = params;
         return {
-          url: `movie/300`,
+          url: `movie/possible-values-by-field`,
+          params: {
+            field,
+          },
         };
       },
     }),
   }),
 });
 
-export const { useFetchAllMoviesQuery } = movieApi;
+export const { useFetchFiltersQuery } = filterApi;

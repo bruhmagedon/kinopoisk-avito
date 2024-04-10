@@ -2,17 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { MoviesApiResponse, ParamsType } from "../model/MovieApiTypes";
 import { MovieIdApiResponse } from "../model/MovieTypes";
 
-// const BASE_URL = process.env.MOVIES_BASE_API_URL;
-// const API_KEY = process.env.MOVIES_API_KEY;
-// №Ключ и ссылка пока захардкожены - позже надо это исправить
-
 export const movieApi = createApi({
   reducerPath: "movieApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.kinopoisk.dev/v1.4/",
+    baseUrl: process.env.API_BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
-      headers.set("X-API-KEY", "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M");
+      headers.set("X-API-KEY", process.env.API_TOKEN);
       return headers;
     },
   }),

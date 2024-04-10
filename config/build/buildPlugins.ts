@@ -2,8 +2,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { Configuration } from "webpack";
 import { BuildOptions } from "./types/types";
+import Dotenv from "dotenv-webpack";
 import webpack from "webpack";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 export function buildPlugins({
   mode,
@@ -16,11 +16,14 @@ export function buildPlugins({
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
+    new Dotenv({
+      path: "./.env",
+    }),
   ];
 
   if (isDev) {
     plugins.push(new webpack.ProgressPlugin());
-    plugins.push(new ReactRefreshWebpackPlugin());
+    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   if (isProd) {

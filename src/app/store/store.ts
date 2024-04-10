@@ -1,4 +1,5 @@
-import { filterApi, movieApi } from "@/entities/movies/api/moviesApi";
+import { filterApi } from "@/entities/filters";
+import { movieApi } from "@/entities/movies";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 

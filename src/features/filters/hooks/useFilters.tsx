@@ -1,7 +1,5 @@
-import { useFetchFiltersQuery } from "@/entities/movies/api/moviesApi";
-import { Filter } from "@/entities/movies/model/MovieApiTypes";
-
-import { useEffect, useState } from "react";
+import { Filter, useFetchFiltersQuery } from "@/entities/filters";
+import { useState } from "react";
 
 interface IFilters {
   genres: Filter[];
@@ -18,15 +16,18 @@ export const useFilters = () => {
   // Запросы - тип, жанры, год(хардкод, можно рэнжом), статус, страна
   const { data: genresData } = useFetchFiltersQuery({
     field: "genres.name",
+    // № Название жанра должно быть с большой буквы
   });
   const { data: countriesData } = useFetchFiltersQuery({
     field: "countries.name",
   });
   const { data: statusData } = useFetchFiltersQuery({
     field: "status",
+    // № Русифицировать (ключ значение, где ключ идёт в редакс, значение выводим)
   });
   const { data: typesData } = useFetchFiltersQuery({
     field: "type",
+    // № Русифицировать (ключ значение, где ключ идёт в редакс, значение выводим)
   });
 
   let isLoading = true;
@@ -34,17 +35,21 @@ export const useFilters = () => {
     isLoading = false;
     return {
       isLoading,
-      genres: genresData,
-      countries: countriesData,
-      status: statusData,
-      type: typesData,
+      data: {
+        genres: genresData,
+        countries: countriesData,
+        status: statusData,
+        type: typesData,
+      },
     };
   }
   return {
     isLoading,
-    genres: genresData,
-    countries: countriesData,
-    status: statusData,
-    type: typesData,
+    data: {
+      genres: genresData,
+      countries: countriesData,
+      status: statusData,
+      type: typesData,
+    },
   };
 };

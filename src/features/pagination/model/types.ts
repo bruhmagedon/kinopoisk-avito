@@ -7,4 +7,6 @@ export interface IPaginationProps {
   handleStartPage?: () => void;
   handleEndPage?: () => void;
   currentPage: number;
+  limit: number;
+  siblings: number;
 }

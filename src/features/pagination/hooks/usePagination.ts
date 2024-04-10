@@ -21,7 +21,6 @@ export const usePagination = ({
     setCurrentPage(1);
   };
   const handleEndPage = () => {
-    console.log(totalPages);
     setCurrentPage(totalPages);
   };
 

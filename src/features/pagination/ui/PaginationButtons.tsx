@@ -4,6 +4,7 @@ import ArrowPrev from "@/shared/assets/icons/arrow-prev.svg";
 import ArrowNext from "@/shared/assets/icons/arrow-next.svg";
 import ArrowEnd from "@/shared/assets/icons/arrow-end.svg";
 import { IPaginationProps } from "../model/types";
+import { usePaginationRange } from "../hooks/usePaginationRange";
 
 export const PaginationButtons = ({
   totalPages,
@@ -13,8 +14,11 @@ export const PaginationButtons = ({
   handleEndPage,
   handleStartPage,
   currentPage,
+  limit,
+  siblings,
 }: IPaginationProps) => {
   const activePageStyles = "font-medium bg-red-300 cursor-auto";
+  const array = usePaginationRange(totalPages, currentPage, limit, siblings);
 
   return (
     <>
@@ -34,12 +38,13 @@ export const PaginationButtons = ({
           {<ArrowPrev />}
         </Button>
         <div className="flex items-center justify-center">
-          {[...Array(totalPages)].map((_, index) => {
-            const activePage = currentPage === index + 1;
+          {array.map((index) => {
+            const activePage = currentPage === (index as number);
 
+            // № Пока что ломается при нажатии на ..., в дальнейшем починить
             return (
               <button
-                onClick={() => handlePageClick(index + 1)}
+                onClick={() => handlePageClick(index as number)}
                 className={
                   "paggination-button pb-[3px] pagination-button-hover " +
                   (activePage ? activePageStyles : "cursor-pointer")
@@ -47,20 +52,20 @@ export const PaginationButtons = ({
                 key={index}
                 disabled={activePage}
               >
-                {index + 1}
+                {index}
               </button>
             );
           })}
         </div>
         <Button
-          disabled={currentPage >= 10}
+          disabled={currentPage >= totalPages}
           onClick={handleNextPage}
           className="paggination-button pagination-button-hover "
         >
           {<ArrowNext />}
         </Button>
         <Button
-          disabled={currentPage >= 10}
+          disabled={currentPage >= totalPages}
           onClick={handleEndPage}
           className="paggination-button pagination-button-hover"
         >

@@ -4,7 +4,7 @@ import {
   PopoverHandler,
   PopoverContent,
 } from "@material-tailwind/react";
-import { MovieIdApiResponse, useFetchAllMoviesQuery } from "@/entities/movies";
+import { MovieIdApiResponse } from "@/entities/movies";
 
 interface MovieCardProps {
   movie: MovieIdApiResponse;

@@ -3,13 +3,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Filter, setFilter } from "@/entities/filters";
 import { useAppDispatch } from "@/app/store/store";
+import { FILTER_TYPES } from "@/features/filters";
 
-enum FILTER_TYPES {
-  genres = "genres.name",
-  countries = "countries.name",
-  status = "status",
-  type = "type",
-}
 interface SelectProps {
   // №Слово фильтр тут не совсем к месту, нужно поменять на унифицированное
   filterData: Filter[];
@@ -20,7 +15,6 @@ export const Select = ({ filterData, type }: SelectProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log(type, selected);
     switch (type) {
       case FILTER_TYPES.genres: {
         dispatch(setFilter({ filterName: "genres", filterValue: selected }));
@@ -64,9 +58,9 @@ export const Select = ({ filterData, type }: SelectProps) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-              {filterData.map((item, itemId) => (
+              {filterData.map((item) => (
                 <Listbox.Option
-                  key={itemId}
+                  key={item.slug}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? "bg-amber-100 text-amber-900" : "text-gray-900"

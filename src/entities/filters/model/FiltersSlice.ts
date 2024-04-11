@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-interface FilterTypes {
+export interface SelectedFilters {
   genres?: string | number;
   countries?: string | number;
   status?: string | number;
   type?: string | number;
 }
 
-export interface CounterState {
-  filters: FilterTypes;
+export interface BasicState {
+  filters: SelectedFilters;
+  isFilterQuery: boolean;
 }
 
-const initialState: CounterState = {
+const initialState: BasicState = {
   filters: {
     genres: "",
     countries: "",
     type: "",
     status: "",
   },
+  isFilterQuery: false,
 };
 
 export const filtersSlice = createSlice({
@@ -28,21 +30,19 @@ export const filtersSlice = createSlice({
     setFilter: (
       state,
       action: PayloadAction<{
-        filterName: keyof CounterState["filters"];
+        filterName: keyof BasicState["filters"];
         filterValue: string | number;
       }>
     ) => {
-      console.log(
-        "REDUX ",
-        action.payload.filterName,
-        action.payload.filterValue
-      );
       state.filters[action.payload.filterName] = action.payload.filterValue;
+    },
+    setFilterQuery: (state, action: PayloadAction<boolean>) => {
+      state.isFilterQuery = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setFilter } = filtersSlice.actions;
+export const { setFilter, setFilterQuery } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

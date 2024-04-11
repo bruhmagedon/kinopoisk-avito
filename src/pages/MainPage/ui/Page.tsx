@@ -1,12 +1,12 @@
 import { Filters } from "@/pages/MainPage/ui/Filters/Filters";
-import { MoviePanel } from "./MoviePanel/MoviePanel";
+import { MoviePanelRequest } from "./MoviePanel/MoviePanel";
 
 export const MainPage = () => {
   return (
     <div className="p-[24px] relative">
       <div className="grid grid-cols-filter-list column-gap items-start">
         <Filters />
-        <MoviePanel />
+        <MoviePanelRequest />
       </div>
     </div>
   );

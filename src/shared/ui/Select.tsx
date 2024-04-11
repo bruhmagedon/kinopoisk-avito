@@ -1,14 +1,48 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Filter } from "@/entities/filters";
+import { Filter, setFilter } from "@/entities/filters";
+import { useAppDispatch } from "@/app/store/store";
 
+enum FILTER_TYPES {
+  genres = "genres.name",
+  countries = "countries.name",
+  status = "status",
+  type = "type",
+}
 interface SelectProps {
   // №Слово фильтр тут не совсем к месту, нужно поменять на унифицированное
   filterData: Filter[];
+  type?: "genres.name" | "countries.name" | "status" | "type";
 }
-export const Select = ({ filterData }: SelectProps) => {
+export const Select = ({ filterData, type }: SelectProps) => {
   const [selected, setSelected] = useState(filterData[0].name);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    console.log(type, selected);
+    switch (type) {
+      case FILTER_TYPES.genres: {
+        dispatch(setFilter({ filterName: "genres", filterValue: selected }));
+        break;
+      }
+      case FILTER_TYPES.countries: {
+        dispatch(setFilter({ filterName: "countries", filterValue: selected }));
+        break;
+      }
+      case FILTER_TYPES.status: {
+        dispatch(setFilter({ filterName: "status", filterValue: selected }));
+        break;
+      }
+      case FILTER_TYPES.type: {
+        dispatch(setFilter({ filterName: "type", filterValue: selected }));
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }, [selected]);
 
   return (
     <div className="w-full">

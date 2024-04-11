@@ -7,3 +7,10 @@ export interface Filter {
 export interface FilterParams {
   field: string;
 }
+
+export interface FilterTypes {
+  genres?: Filter[];
+  countries?: Filter[];
+  status?: Filter[];
+  type?: Filter[];
+}

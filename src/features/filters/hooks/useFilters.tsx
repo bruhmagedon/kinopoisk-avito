@@ -1,17 +1,8 @@
 import { Filter, useFetchFiltersQuery } from "@/entities/filters";
 import { useState } from "react";
 
-interface IFilters {
-  genres: Filter[];
-  countries: Filter[];
-  status: Filter[];
-  type: Filter[];
-}
-
 export const useFilters = () => {
   //Здесь нужно будет достать вообще всю инфу по фильтрам
-
-  const [filters, setFilters] = useState<IFilters>();
 
   // Запросы - тип, жанры, год(хардкод, можно рэнжом), статус, страна
   const { data: genresData } = useFetchFiltersQuery({
@@ -29,6 +20,7 @@ export const useFilters = () => {
     field: "type",
     // № Русифицировать (ключ значение, где ключ идёт в редакс, значение выводим)
   });
+  // №Добавить год
 
   let isLoading = true;
   if (genresData && countriesData && statusData && typesData) {
@@ -45,11 +37,6 @@ export const useFilters = () => {
   }
   return {
     isLoading,
-    data: {
-      genres: genresData,
-      countries: countriesData,
-      status: statusData,
-      type: typesData,
-    },
+    data: null,
   };
 };

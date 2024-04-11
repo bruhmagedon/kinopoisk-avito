@@ -1,15 +1,10 @@
-import { Select } from "@/shared";
+import { Button, Select } from "@/shared";
 import { useFilters } from "../hooks/useFilters";
 import withSkelton from "@/shared/hooks/withSkeleton";
-import { Filter } from "@/entities/filters";
+import { Filter, FilterTypes } from "@/entities/filters";
 
 interface FiltersPanelProps {
-  data: {
-    genres: Filter[];
-    countries: Filter[];
-    status: Filter[];
-    type: Filter[];
-  };
+  data?: FilterTypes;
 }
 
 export const FiltersPanel = () => {
@@ -27,10 +22,12 @@ export const FiltersPanel = () => {
 const View = ({ data }: FiltersPanelProps) => {
   return (
     <>
-      <Select filterData={data.genres} />
-      <Select filterData={data.countries} />
-      <Select filterData={data.status} />
-      <Select filterData={data.type} />
+      <Select filterData={data.genres} type="genres.name" />
+      <Select filterData={data.countries} type="countries.name" />
+      <Select filterData={data.status} type="status" />
+      <Select filterData={data.type} type="type" />
+      <Button>{"Принять"}</Button>
+      <Button>{"Сбросить"}</Button>
     </>
   );
 };

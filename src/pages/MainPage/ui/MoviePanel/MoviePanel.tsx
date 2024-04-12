@@ -40,7 +40,7 @@ const MoviePanel = ({ filters }: MoviePanelProps) => {
   const { data, isLoading } = useFetchAllMoviesQuery({
     limit,
     page: currentPage,
-    ...filters,
+    // ...filters,
   });
 
   return (

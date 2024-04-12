@@ -5,6 +5,7 @@ import {
   PopoverContent,
 } from "@material-tailwind/react";
 import { MovieIdApiResponse } from "@/entities/movies";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   movie: MovieIdApiResponse;
@@ -12,15 +13,23 @@ interface MovieCardProps {
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
   const [openPopover, setOpenPopover] = useState(false);
+  const navigate = useNavigate();
 
   const triggers = {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false),
   };
 
+  const onNavigate = () => {
+    navigate(`/movie/${movie.id}`);
+  };
+
   return (
     <>
-      <li className="w-full h-[300px] cursor-pointer relative">
+      <li
+        className="w-full h-[300px] cursor-pointer relative"
+        onClick={onNavigate}
+      >
         <Popover
           open={openPopover}
           handler={setOpenPopover}

@@ -3,6 +3,7 @@ import { FilterParams, Filter } from "../model/types";
 
 const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
 
+// №Думаю все фильтры нужно захардкодить, чтобы лишний раз не делать запрос, но хз
 export const filterApi = createApi({
   reducerPath: "filterApi",
   baseQuery: fetchBaseQuery({

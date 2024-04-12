@@ -58,9 +58,9 @@ export const Select = ({ filterData, type }: SelectProps) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-              {filterData.map((item) => (
+              {filterData.map((item, index) => (
                 <Listbox.Option
-                  key={item.slug}
+                  key={index}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? "bg-amber-100 text-amber-900" : "text-gray-900"

@@ -1,13 +1,13 @@
-import { MainPage } from "@/pages/MainPage";
 import { Header } from "@/widgets/Header";
+import { Outlet } from "react-router-dom";
 
-const App = () => {
+const BaseLayout = () => {
   return (
     <div className="h-dvh relative mx-auto max-w-[1160px] py-[50px]">
       <Header />
-      <MainPage />
+      <Outlet />
     </div>
   );
 };
 
-export default App;
+export default BaseLayout;

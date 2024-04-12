@@ -24,15 +24,19 @@ export const movieApi = createApi({
           },
         };
       },
-      // Сохранение результатов в стор (досмотреть видос)
-      //   async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
-      //     const result = await queryFulfilled;
-      //     const data = result.data;
-
-      //     dispatch(setNews(data.news));
-      //   },
+    }),
+    fetchMovieById: builder.query<MoviesApiResponse, { id: string }>({
+      query: (params) => {
+        const { id } = params;
+        return {
+          url: `movie`,
+          params: {
+            id,
+          },
+        };
+      },
     }),
   }),
 });
 
-export const { useFetchAllMoviesQuery } = movieApi;
+export const { useFetchAllMoviesQuery, useFetchMovieByIdQuery } = movieApi;

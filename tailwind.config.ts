@@ -1,5 +1,10 @@
 export default {
-  content: ["./build/*.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./build/*.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{html,js,ts,jsx,tsx,mdx}",
+    "./**/@material-tailwind/**/*.{html,js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {

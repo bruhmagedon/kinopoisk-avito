@@ -6,9 +6,10 @@ import {
 } from "@material-tailwind/react";
 import { MovieIdApiResponse } from "@/entities/movies";
 import { useNavigate } from "react-router-dom";
+import { SimilarMovie } from "@/entities/movies/model/MovieTypes";
 
 interface MovieCardProps {
-  movie: MovieIdApiResponse;
+  movie: MovieIdApiResponse | SimilarMovie;
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
@@ -51,9 +52,11 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
             {movie.name}
           </PopoverContent>
         </Popover>
-        <div className="absolute z-50111 w-[30px] h-[30px] bg-red-300 left-0 top-0 ">
-          {movie.rating.kp.toFixed(1)}
-        </div>
+        {movie.rating?.kp ? (
+          <div className="absolute z-50111 w-[30px] h-[30px] bg-red-300 left-0 top-0 ">
+            {movie.rating.kp?.toFixed(1)}
+          </div>
+        ) : null}
       </li>
     </>
   );

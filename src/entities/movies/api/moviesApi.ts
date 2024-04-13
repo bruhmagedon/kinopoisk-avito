@@ -1,5 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { MoviesApiResponse, MovieParamsType } from "../model/MovieApiTypes";
+import {
+  MoviesApiResponse,
+  MovieParamsType,
+  PostersApiResponse,
+  SeriesApiResponse,
+  MovieId,
+  ReviewParamsType,
+  ReviewApiResponse,
+} from "../model/MovieApiTypes";
+import { MovieIdApiResponse } from "../model/MovieTypes";
 
 const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
 
@@ -25,13 +34,41 @@ export const movieApi = createApi({
         };
       },
     }),
-    fetchMovieById: builder.query<MoviesApiResponse, { id: string }>({
+    fetchMovieById: builder.query<MovieIdApiResponse, MovieId>({
       query: (params) => {
         const { id } = params;
         return {
-          url: `movie`,
+          url: `movie/${id}`,
+        };
+      },
+    }),
+    fetchPosters: builder.query<PostersApiResponse, MovieId>({
+      query: (params) => {
+        return {
+          url: `image`,
           params: {
-            id,
+            ...params,
+          },
+        };
+      },
+    }),
+    fetchSeasonsAndSeries: builder.query<SeriesApiResponse, MovieId>({
+      query: (params) => {
+        const { movieId } = params;
+        return {
+          url: `season`,
+          params: {
+            movieId,
+          },
+        };
+      },
+    }),
+    fetchReview: builder.query<ReviewApiResponse, ReviewParamsType>({
+      query: (params) => {
+        return {
+          url: `review`,
+          params: {
+            ...params,
           },
         };
       },
@@ -39,4 +76,12 @@ export const movieApi = createApi({
   }),
 });
 
-export const { useFetchAllMoviesQuery, useFetchMovieByIdQuery } = movieApi;
+export const {
+  useFetchAllMoviesQuery,
+  useFetchMovieByIdQuery,
+  useFetchPostersQuery,
+  useFetchSeasonsAndSeriesQuery,
+  useFetchReviewQuery,
+} = movieApi;
+
+// https://api.kinopoisk.dev/v1.4/review

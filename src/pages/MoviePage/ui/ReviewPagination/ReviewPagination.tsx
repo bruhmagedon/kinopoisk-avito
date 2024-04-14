@@ -11,7 +11,7 @@ interface ReviewPaginationProps {
 
 export const ReviewPagination = ({ movieId }: ReviewPaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit] = useState(4); //лимит будет выставляться из фильтров
+  const [limit] = useState(4);
 
   const { data, isLoading } = useFetchReviewQuery({
     movieId: movieId,

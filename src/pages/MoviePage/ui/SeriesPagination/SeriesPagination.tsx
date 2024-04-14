@@ -9,7 +9,7 @@ interface SeriesPaginationProps {
 
 export const SeriesPagination = ({ series }: SeriesPaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit] = useState(6); //лимит будет выставляться из фильтров
+  const [limit] = useState(6);
 
   return (
     <PaginationWrapper

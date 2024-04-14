@@ -9,7 +9,6 @@ import {
   ReviewApiResponse,
 } from "../model/MovieApiTypes";
 import { MovieIdApiResponse } from "../model/MovieTypes";
-import { useAppSelector } from "@/app/store/store";
 
 const X_API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -120,6 +119,3 @@ export const {
   useFetchReviewQuery,
   useFetchSearchQuery,
 } = movieApi;
-
-// https://api.kinopoisk.dev/v1.4/review
-// https://api.kinopoisk.dev/v1.4/

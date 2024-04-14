@@ -13,13 +13,6 @@ interface FiltersPanelProps {
 
 export const FiltersPanel = () => {
   const { isLoading, data } = useFilters();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    // if (data) {
-    //   data.
-    // }
-  }, [data]);
 
   return (
     <>

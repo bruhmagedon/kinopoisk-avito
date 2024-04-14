@@ -11,12 +11,7 @@ export const SortPanel = () => {
     <div className="bg-panel-darker-bg text-white w-full py-6 px-3 flex flex-col gap-3 rounded-lg">
       <div className="">
         <p>{"Тип сортировки"}</p>
-        <Select
-          sortData={SORT_DATA}
-          type="sort"
-          initialValue={sort}
-          // onChange={(value) => dispatch(setSort(value))}
-        />
+        <Select sortData={SORT_DATA} type="sort" initialValue={sort} />
       </div>
       <div className="">
         <p>{"Сколько показывать"}</p>
@@ -24,7 +19,6 @@ export const SortPanel = () => {
           sortData={LIST_VIEW_VARIANTS}
           type="viewCount"
           initialValue={viewCount}
-          // onChange={(value) => dispatch(setViewCount(value))}
         />
       </div>
     </div>

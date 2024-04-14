@@ -39,7 +39,6 @@ export const SearchOutput = ({ keyword }: SearchOutputProps) => {
 
   const handleSearchTerm = (term: string) => {
     dispatch(setInputTerm(term));
-    console.log(term);
   };
 
   if (keyword && data) {

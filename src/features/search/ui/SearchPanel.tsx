@@ -11,10 +11,8 @@ import {
 import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage";
 
 export const SearchPanel = () => {
-  // const [term, setTerm] = useState("");
   const term = useAppSelector((state) => state.search.inputTerm);
   const isOpen = useAppSelector((state) => state.search.searchPanelStatus);
-  // const [isOpen, setIsOpen] = useState(false);
   const searchPanelRef = useRef<HTMLDivElement>(null);
 
   const dispatch = useAppDispatch();
@@ -73,7 +71,6 @@ export const SearchPanel = () => {
               "w-[35px] h-full flex justify-center items-center outline-none " +
               (isOpen && "hover:bg-[#3A3A3A] rounded-lg")
             }
-            // disabled={!isOpen}
             onClick={onDispatchTerm}
           >
             <Find className="stroke-white" />

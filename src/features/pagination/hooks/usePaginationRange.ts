@@ -1,6 +1,5 @@
 import _ from "lodash";
 
-// Отображение range в пагинации (переделать в dns like при редизайне)
 export const usePaginationRange = (
   totalPage: number,
   page: number,

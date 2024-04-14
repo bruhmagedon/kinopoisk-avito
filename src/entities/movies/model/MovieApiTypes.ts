@@ -16,8 +16,6 @@ interface IQueryParams extends SelectedFilters {
   query: string;
   sortField: string;
   sortType: string;
-  // pages: number;
-  // total: number;
 }
 
 export type MovieParamsType = Partial<IQueryParams>;

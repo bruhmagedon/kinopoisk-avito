@@ -11,7 +11,6 @@ export const useFilters = () => {
     slug: "",
   };
 
-  // Запросы - тип, жанры, год(хардкод, можно рэнжом), статус, страна
   const { data: genresData } = useFetchFiltersQuery({
     field: "genres.name",
   });

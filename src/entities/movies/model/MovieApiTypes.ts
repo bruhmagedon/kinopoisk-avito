@@ -14,6 +14,8 @@ interface IQueryParams extends SelectedFilters {
   limit: number;
   page: number;
   query: string;
+  sortField: string;
+  sortType: string;
   // pages: number;
   // total: number;
 }

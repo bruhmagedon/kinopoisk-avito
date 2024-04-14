@@ -1,75 +1,39 @@
 import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { FilterApiResponse, setFilter } from "@/entities/filters";
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import _ from "lodash";
+import { useAppDispatch } from "@/app/store/store";
+import { setSort } from "@/entities/filters";
 
 type SortTypes = {
   name: string;
 };
+
 interface SelectProps {
   sortData: SortTypes[];
   type?: "sort" | "viewCount";
   initialValue?: string;
 }
 
-export const Select = ({ sortData }: SelectProps) => {
-  const [selected, setSelected] = useState<string>(sortData[0].name);
+export const Select = ({ sortData, type }: SelectProps) => {
+  const [selected, setSelected] = useState(sortData[0].name);
+  const dispatch = useAppDispatch();
 
-  // const dispatch = useAppDispatch();
-  // const filterValue = useAppSelector((state) => state.filters.filters[type]);
-
-  // useEffect(() => {
-  //   setSelected(filterValue || initialValue);
-  // }, [filterValue, initialValue]);
-
-  // useEffect(() => {
-  //   switch (type) {
-  //     case FILTER_TYPES.genres: {
-  //       dispatch(
-  //         setFilter({
-  //           filterName: "genres.name",
-  //           filterValue: selected.toLowerCase(),
-  //         })
-  //       );
-  //       break;
-  //     }
-  //     case FILTER_TYPES.countries: {
-  //       dispatch(
-  //         setFilter({
-  //           filterName: "countries.name",
-  //           filterValue: selected,
-  //         })
-  //       );
-  //       break;
-  //     }
-  //     case FILTER_TYPES.status: {
-  //       dispatch(
-  //         setFilter({
-  //           filterName: "status",
-  //           filterValue: selected.toLowerCase(),
-  //         })
-  //       );
-  //       break;
-  //     }
-  //     case FILTER_TYPES.type: {
-  //       dispatch(
-  //         setFilter({ filterName: "type", filterValue: selected.toLowerCase() })
-  //       );
-  //       break;
-  //     }
-  //     case FILTER_TYPES.year: {
-  //       dispatch(
-  //         setFilter({ filterName: "year", filterValue: selected.toLowerCase() })
-  //       );
-  //       break;
-  //     }
-  //     default: {
-  //       break;
-  //     }
-  //   }
-  // }, [selected]);
+  useEffect(() => {
+    switch (type) {
+      case "sort": {
+        dispatch(setSort({ key: "sort", value: selected }));
+        break;
+      }
+      case "viewCount": {
+        dispatch(setSort({ key: "viewCount", value: selected }));
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }, [selected]);
 
   return (
     <div className="w-full">

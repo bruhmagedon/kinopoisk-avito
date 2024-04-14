@@ -11,12 +11,11 @@ import {
 import { MovieIdApiResponse } from "../model/MovieTypes";
 import { useAppSelector } from "@/app/store/store";
 
-const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
+const X_API_KEY = process.env.REACT_APP_API_KEY;
 
 export const movieApi = createApi({
   reducerPath: "movieApi",
   baseQuery: fetchBaseQuery({
-    // №Env работает как то неправильно!, потом пофиксить
     baseUrl: "https://api.kinopoisk.dev/v1.4/",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
@@ -27,7 +26,7 @@ export const movieApi = createApi({
   endpoints: (builder) => ({
     fetchMovies: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
-        const { query, ...otherParams } = params;
+        const { query, sortField, ...otherParams } = params;
         const filteredOtherParams = Object.entries(otherParams)
           .filter(([_, value]) => value !== "")
           .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
@@ -41,12 +40,23 @@ export const movieApi = createApi({
             },
           };
         } else {
-          return {
-            url: `movie`,
-            params: {
-              ...filteredOtherParams,
-            },
-          };
+          if (sortField) {
+            return {
+              url: `movie`,
+              params: {
+                sortField,
+                sortType: 1,
+                ...filteredOtherParams,
+              },
+            };
+          } else {
+            return {
+              url: `movie`,
+              params: {
+                ...filteredOtherParams,
+              },
+            };
+          }
         }
       },
     }),

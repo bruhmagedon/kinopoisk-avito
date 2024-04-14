@@ -23,9 +23,11 @@ export const SelectFilter = ({
   type,
   initialValue = "Нет",
 }: SelectFilterProps) => {
-  const [selected, setSelected] = useState<string>(
-    initialValue || filterData[0].name
-  );
+  const [selected, setSelected] = useState<string>(() => {
+    const storedValue = getFilterFromLocalStorage(type);
+    return storedValue || initialValue || filterData[0].name;
+  });
+
   const dispatch = useAppDispatch();
   const filterValue = useAppSelector((state) => state.filters.filters[type]);
 
@@ -78,6 +80,7 @@ export const SelectFilter = ({
         break;
       }
     }
+    saveFilterToLocalStorage(type, selected);
   }, [selected]);
 
   return (
@@ -134,4 +137,12 @@ export const SelectFilter = ({
       </Listbox>
     </div>
   );
+};
+
+const saveFilterToLocalStorage = (filterName: string, filterValue: string) => {
+  localStorage.setItem(filterName, filterValue);
+};
+
+const getFilterFromLocalStorage = (filterName: string) => {
+  return localStorage.getItem(filterName);
 };

@@ -4,6 +4,7 @@ import { useFilters, useFiltersReturnType } from "../hooks/useFilters";
 import { Button } from "@/shared";
 import { FiltersVariant } from "./FiltersVariat";
 import { resetFilters } from "@/entities/filters";
+import { useEffect } from "react";
 
 interface FiltersPanelProps {
   data?: useFiltersReturnType["data"];
@@ -13,6 +14,12 @@ interface FiltersPanelProps {
 export const FiltersPanel = () => {
   const { isLoading, data } = useFilters();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // if (data) {
+    //   data.
+    // }
+  }, [data]);
 
   return (
     <>

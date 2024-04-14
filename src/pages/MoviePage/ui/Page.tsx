@@ -19,6 +19,12 @@ export const MoviePage = () => {
   let { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, [id]);
+
+  useEffect(() => {
     if (isOpen) {
       dispatch(setSearchPanelStatus(!isOpen));
       dispatch(setInputTerm(""));

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type SortType = "Отсутствует" | "По названию" | "По рейтингу" | "По году";
 interface SortState {
   sort: string;
   viewCount: string;
@@ -16,10 +17,12 @@ export const sortSlice = createSlice({
   reducers: {
     setSort: (
       state,
-      action: PayloadAction<{ sort: string; viewCount: string }>
+      action: PayloadAction<{
+        key: keyof SortState;
+        value: string;
+      }>
     ) => {
-      state.sort = action.payload.sort;
-      state.viewCount = action.payload.viewCount;
+      state[action.payload.key] = action.payload.value;
     },
     resetSort: (state) => {
       state.sort = initialState.sort;

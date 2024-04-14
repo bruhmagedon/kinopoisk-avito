@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { FilterApiParams, FilterApiResponse, FilterType } from "../model/types";
+import { FilterApiParams, FilterType } from "../model/types";
 
-const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
+const X_API_KEY = process.env.REACT_APP_API_KEY;
+console.log(process.env.REACT_APP_API_KEY);
 
 export const filterApi = createApi({
   reducerPath: "filterApi",

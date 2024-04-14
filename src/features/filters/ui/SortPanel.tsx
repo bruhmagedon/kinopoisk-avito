@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { setSort } from "@/entities/filters";
 import { Select } from "@/shared";
 import { LIST_VIEW_VARIANTS, SORT_DATA } from "../model/constants";
 

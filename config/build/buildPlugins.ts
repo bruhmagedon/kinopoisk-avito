@@ -17,7 +17,7 @@ export function buildPlugins({
       template: paths.html,
     }),
     new Dotenv({
-      path: "./.env",
+      systemvars: true,
     }),
   ];
 

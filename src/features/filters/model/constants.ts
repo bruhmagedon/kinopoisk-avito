@@ -21,6 +21,19 @@ export const LIST_VIEW_VARIANTS = [
     name: "12",
   },
   {
+    name: "16",
+  },
+  {
     name: "20",
   },
+  {
+    name: "24",
+  },
 ];
+
+export const SORT_MAP = {
+  Отсутствует: "",
+  "По названию": "name",
+  "По году": "year",
+  "По рейтингу": "rating.kp",
+};

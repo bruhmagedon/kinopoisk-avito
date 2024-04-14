@@ -1,5 +1,8 @@
 export const SORT_DATA = [
   {
+    name: "Отсутствует",
+  },
+  {
     name: "По названию",
   },
   {

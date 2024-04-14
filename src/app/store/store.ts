@@ -1,4 +1,5 @@
 import { FiltersSlice, filterApi } from "@/entities/filters";
+import SortSlice from "@/entities/filters/model/SortSlice";
 import { movieApi } from "@/entities/movies";
 import { searchSlice } from "@/entities/search";
 import { configureStore } from "@reduxjs/toolkit";
@@ -10,6 +11,7 @@ export const store = configureStore({
     [filterApi.reducerPath]: filterApi.reducer,
     filters: FiltersSlice,
     search: searchSlice,
+    sort: SortSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(movieApi.middleware, filterApi.middleware),

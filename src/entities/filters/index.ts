@@ -4,9 +4,18 @@ import {
   FilterApiParams,
   FILTER_TYPES,
 } from "./model/types";
-import FiltersSlice, { setFilter, SelectedFilters } from "./model/FiltersSlice";
+import FiltersSlice, {
+  setFilter,
+  SelectedFilters,
+  resetFilters,
+} from "./model/FiltersSlice";
+
+import { setSort, resetSort } from "./model/SortSlice";
 
 export {
+  setSort,
+  resetSort,
+  resetFilters,
   SelectedFilters,
   filterApi,
   useFetchFiltersQuery,

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Popover,
   PopoverHandler,
   PopoverContent,
 } from "@material-tailwind/react";
 import { MovieIdApiResponse } from "@/entities/movies";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SimilarMovie } from "@/entities/movies/model/MovieTypes";
 
 interface MovieCardProps {
@@ -14,7 +14,7 @@ interface MovieCardProps {
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
   const [openPopover, setOpenPopover] = useState(false);
-  const location = useLocation();
+
   const navigate = useNavigate();
 
   const triggers = {
@@ -22,33 +22,12 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
     onMouseLeave: () => setOpenPopover(false),
   };
 
-  const [queries, setQueries] = useState<string[]>([]);
-
-  useEffect(() => {
-    // Сохраняем текущий запрос в состоянии компонента
-    setQueries((prevQueries) => [...prevQueries, location.search]);
-
-    const handlePopState = () => {
-      const prevQuery = queries[queries.length - 2];
-      if (prevQuery) {
-        window.history.pushState(null, "", prevQuery);
-      }
-    };
-
-    window.history.pushState(null, "", location.pathname + location.search);
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [location.search, queries]);
-
   const onNavigate = () => {
     navigate(`/movie/${movie.id}`);
   };
 
   const cover =
-    movie.poster.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
+    movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
   return (
     <>
       <li
@@ -71,8 +50,8 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
               className="object-cover w-full h-full rounded-2xl"
             />
           </PopoverHandler>
-          <PopoverContent className="z-30 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden  text-white bg-panel-darker-bg">
-            {movie.name == "" ? "Нет данных" : movie.name}
+          <PopoverContent className="z-30 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden text-sm p-2 text-white bg-panel-darker-bg border-gray-700 border-[1px]">
+            {movie.name.replace(/\s/g, "") == "" ? movie.enName : movie.name}
           </PopoverContent>
         </Popover>
         {movie.rating?.kp ? (

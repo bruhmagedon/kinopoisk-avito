@@ -37,7 +37,11 @@ export const MoviePage = () => {
   }, [seasonsData]);
 
   if (movieLoading) {
-    return <div>Загрузка</div>;
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <h1 className="font-medium text-2xl text-white">{"Загрузка..."}</h1>
+      </div>
+    );
   }
 
   return (

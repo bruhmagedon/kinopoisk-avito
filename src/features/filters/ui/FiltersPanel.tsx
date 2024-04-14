@@ -3,6 +3,7 @@ import { useAppDispatch } from "@/app/store/store";
 import { useFilters, useFiltersReturnType } from "../hooks/useFilters";
 import { Button } from "@/shared";
 import { FiltersVariant } from "./FiltersVariat";
+import { resetFilters } from "@/entities/filters";
 
 interface FiltersPanelProps {
   data?: useFiltersReturnType["data"];
@@ -23,9 +24,15 @@ export const FiltersPanel = () => {
 };
 
 const View = ({ data }: FiltersPanelProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
+  };
+
   return (
     <>
-      <h2 className="text-xl">Фильтры</h2>
+      <h2 className="text-xl font-medium">Фильтры</h2>
       <FiltersVariant data={data.genres} text="По жанрам" type="genres.name" />
       <FiltersVariant
         data={data.countries}
@@ -35,10 +42,10 @@ const View = ({ data }: FiltersPanelProps) => {
       <FiltersVariant data={data.type} text="По типам" type="type" />
       <FiltersVariant data={data.status} text="По статусу" type="status" />
       <FiltersVariant data={data.year} text="По году" type="year" />
-      <Button className="bg-green-400 text-black rounded-lg h-[36px] hover:bg-green-500 mt-3">
-        {"Принять"}
-      </Button>
-      <Button className="bg-red-400 text-black rounded-lg h-[36px] hover:bg-red-500">
+      <Button
+        onClick={handleResetFilters}
+        className="bg-input-bg text-white rounded-lg h-[36px] hover:bg-[#353535] mt-3 font-medium"
+      >
         {"Сбросить"}
       </Button>
     </>

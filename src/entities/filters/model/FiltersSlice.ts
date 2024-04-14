@@ -11,7 +11,6 @@ export interface SelectedFilters {
 
 export interface BasicState {
   filters: SelectedFilters;
-  isFilterQuery: boolean;
 }
 
 const initialState: BasicState = {
@@ -22,7 +21,6 @@ const initialState: BasicState = {
     status: "",
     year: "",
   },
-  isFilterQuery: false,
 };
 
 export const filtersSlice = createSlice({
@@ -42,14 +40,13 @@ export const filtersSlice = createSlice({
         state.filters[action.payload.filterName] = action.payload.filterValue;
       }
     },
-    setFilterQuery: (state, action: PayloadAction<boolean>) => {
-      state.isFilterQuery = action.payload;
+    resetFilters: (state) => {
+      state.filters = initialState.filters;
     },
-    // Сюда можно добавить обнуление, потом их перетащить в FilterSelect, взять Select нет с локальным стейтом, а с редаксом
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setFilter, setFilterQuery } = filtersSlice.actions;
+export const { setFilter, resetFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

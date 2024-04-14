@@ -6,32 +6,12 @@ import { PaginationWrapper } from "@/features/pagination";
 import { LoadMoreButton, useDebounce } from "@/shared";
 import { MovieList } from "@/widgets/Movies";
 
-export const MoviePanelRequest = () => {
-  const { filters, isFilterQuery } = useAppSelector((state) => state.filters);
-  const [filtersState, setFiltersState] = useState<SelectedFilters>(filters);
-
-  useEffect(() => {
-    if (isFilterQuery) {
-      setFiltersState(filters);
-    }
-    // else {
-    //   setFiltersState(null);
-    // }
-  }, [isFilterQuery]);
-
-  return <MoviePanel />;
-};
-
 const TOTAL = 100;
 
-const MoviePanel = () => {
+export const MoviePanel = () => {
   const keyword = useAppSelector((state) => state.search.keyword);
   const filters = useAppSelector((state) => state.filters.filters);
   const debouncedKeywords = useDebounce(keyword, 1000);
-
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
 
   // Пагинация
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +23,10 @@ const MoviePanel = () => {
     page: currentPage,
     ...filters,
   });
+
+  useEffect(() => {
+    console.log(data, isLoading);
+  }, [data, isLoading]);
 
   return (
     <section className="flex flex-col gap-12">

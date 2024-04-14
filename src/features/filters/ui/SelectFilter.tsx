@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { FilterApiResponse, setFilter } from "@/entities/filters";
-import { useAppDispatch } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import _ from "lodash";
 
 enum FILTER_TYPES {
@@ -16,10 +16,22 @@ enum FILTER_TYPES {
 interface SelectFilterProps {
   filterData: FilterApiResponse;
   type?: "genres.name" | "countries.name" | "status" | "type" | "year";
+  initialValue?: string;
 }
-export const SelectFilter = ({ filterData, type }: SelectFilterProps) => {
-  const [selected, setSelected] = useState<string>(filterData[0].name);
+export const SelectFilter = ({
+  filterData,
+  type,
+  initialValue = "Нет",
+}: SelectFilterProps) => {
+  const [selected, setSelected] = useState<string>(
+    initialValue || filterData[0].name
+  );
   const dispatch = useAppDispatch();
+  const filterValue = useAppSelector((state) => state.filters.filters[type]);
+
+  useEffect(() => {
+    setSelected(filterValue || initialValue);
+  }, [filterValue, initialValue]);
 
   useEffect(() => {
     switch (type) {
@@ -72,7 +84,7 @@ export const SelectFilter = ({ filterData, type }: SelectFilterProps) => {
     <div className="w-full">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-input-bg py-2 pl-3 pr-10 text-left shadow-md sm:text-sm">
+          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-input-bg hover:bg-[#353535] py-2 pl-3 pr-10 text-left shadow-md sm:text-sm">
             <span className="block truncate">{_.capitalize(selected)}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon

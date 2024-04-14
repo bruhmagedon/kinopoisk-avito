@@ -7,6 +7,16 @@ interface MovieListProps {
 }
 
 const MovieList = ({ data: docs }: MovieListProps) => {
+  if (docs?.length === 0) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <h1 className="font-medium text-2xl text-white">
+          {"Данных по такому запросу нет"}
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <ul className="grid grid-cols-4 gap-[24px]">
       {docs?.map((movie) => {

@@ -12,6 +12,7 @@
 
 ![image](https://github.com/bruhmagedon/kinopoisk/assets/99552300/da426ef3-d69b-4ec9-9b04-b39ff9729f71)
 
+Либо создать файл .env в корне проекта, где прописать токен формата `REACT_APP_API_KEY=YOUR_API_TOKEN`
 
 # Функционирование проекта
 
@@ -28,3 +29,12 @@
     RTK используется для запросов к серверу. Это удобная альтернатива тому же axios, которая устанавливается вместе с ReduxToolkit. Из причин почему её стоит использовать можно выделить, например, кеширование http запросов. А т.к. сайт получает много данных с KinoPoiskApi, можно лишний раз не делать запрос к серверу, а взять их из кеша. Также в RTK можно использовать асинхронные вызовы API.
     
 6. Tailwind. Мне просто нравится этот css фреймворк, можно сразу писать все стили к classNames, к тому же по дефолту устанавливает хорошие обнуляющие стили. Также использовал библиотеки компонентов, работающие с Tailwind: material-tailwind и headless ui
+
+### Интерфейс 
+Главная страница
+![image](https://github.com/bruhmagedon/kinopoisk/assets/99552300/07b57d29-93d2-4d83-9732-75395cdbf611)
+
+Страница фильма
+![image](https://github.com/bruhmagedon/kinopoisk/assets/99552300/816c519a-7e76-4bdc-b4d9-cb330d7f862d)
+![image](https://github.com/bruhmagedon/kinopoisk/assets/99552300/02c61aea-551f-411f-8cbc-ab73f183c918)
+

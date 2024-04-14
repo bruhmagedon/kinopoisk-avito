@@ -34,7 +34,7 @@ export const ActorCard = ({ person }: ActorCardProps) => {
             <img
               src={person.photo}
               alt={"Фотография"}
-              className="object-cover w-full h-full rounded-2xl"
+              className="object-cover lg:w-full h-full rounded-2xl max-lg:w-[100px] max-lg:h-[200px]"
             />
           </PopoverHandler>
           {/* Текст при наведении */}

@@ -22,7 +22,9 @@ export const PaginationButtons = ({
   const array = usePaginationRange(totalPages, currentPage, limit, siblings);
   const textStatus = type === "small" ? "text-lg" : "text-2xl";
   const sizeStatus =
-    type === "small" ? " w-[30px] h-[30px] " : " w-[45px] h-[45px] ";
+    type === "small"
+      ? " w-[30px] h-[30px] "
+      : " max-sm:w-[30px] max-sm:h-[30px] w-[45px] h-[45px] ";
 
   return (
     <>

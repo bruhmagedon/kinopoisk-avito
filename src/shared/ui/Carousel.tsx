@@ -29,14 +29,14 @@ interface PostersCarouselProps {
 
 const PostersCarousel = ({ posters }: PostersCarouselProps) => {
   return (
-    <TailwindCarousel className="rounded-xl max-h-[800px]">
+    <TailwindCarousel className="rounded-xl max-h-[800px] max-sm:h-auto flex items-center">
       {posters.docs.map((item) => {
         return (
           <div className="h-full" key={item.id}>
             <img
               src={item.url}
               alt={item.url}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full rounded-lg"
             />
           </div>
         );

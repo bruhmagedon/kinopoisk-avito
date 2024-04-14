@@ -21,7 +21,7 @@ export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
       totalPages={Math.ceil(persons.length / limit)}
     >
       {
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 items-center">
           <ActorsList persons={getPaginatedData(persons, limit, currentPage)} />
         </div>
       }
@@ -31,7 +31,7 @@ export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
 
 const ActorsList = ({ persons }: ActorsPaginationProps) => {
   return (
-    <ul className="grid grid-cols-6 gap-[24px] h-[200px]">
+    <ul className="grid lg:grid-cols-6 max-lg:grid-row-3 max-lg:grid-cols-3 gap-[24px] lg:h-[200px]">
       {persons.map((person, index) => {
         return <ActorCard person={person} key={index} />;
       })}

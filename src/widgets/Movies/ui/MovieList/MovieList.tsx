@@ -18,7 +18,7 @@ const MovieList = ({ data: docs }: MovieListProps) => {
   }
 
   return (
-    <ul className="grid grid-cols-4 gap-[24px]">
+    <ul className="grid max-sm:grid-cols-2 max-lg:grid-cols-3 max-sm:p-5 gap-[24px] lg:grid-cols-4">
       {docs?.map((movie) => {
         return <MovieCard key={movie.id} movie={movie} />;
       })}

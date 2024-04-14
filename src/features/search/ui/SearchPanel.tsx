@@ -43,7 +43,10 @@ export const SearchPanel = () => {
   };
 
   return (
-    <div className="w-[35%] mx-auto relative" ref={searchPanelRef}>
+    <div
+      className="w-[310px] max-lg:w-auto max-lg:flex-1 mx-auto relative"
+      ref={searchPanelRef}
+    >
       <form className="w-full" onClick={handleFormClick}>
         <div className="flex bg-input-bg h-[37px] items-center justify-between rounded-lg">
           <div

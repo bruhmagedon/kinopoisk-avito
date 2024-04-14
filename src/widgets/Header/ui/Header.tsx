@@ -11,14 +11,14 @@ export const Header = () => {
 
   return (
     <header className="bg-panel-darker-bg rounded-lg">
-      <nav className="flex justify-center items-center px-36 py-5">
-        <div className="flex-1 cursor-pointer" onClick={onNavigate}>
-          <span className="text-white text-xl font-medium hover:text-primary">
+      <nav className="flex justify-center lg:justify-between items-center px-36 max-lg:px-5 py-5 max-lg:gap-4">
+        <div className="max-lg:flex-0 cursor-pointer" onClick={onNavigate}>
+          <span className="text-white text-lg font-medium hover:text-primary">
             Главная
           </span>
         </div>
         <SearchPanel />
-        <div className="flex-1 flex justify-end">
+        <div className="flex justify-end max-lg:hidden">
           <Button className="invisible">Аккаунт</Button>
         </div>
       </nav>

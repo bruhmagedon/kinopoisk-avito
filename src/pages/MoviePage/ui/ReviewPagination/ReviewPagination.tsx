@@ -25,8 +25,8 @@ export const ReviewPagination = ({ movieId }: ReviewPaginationProps) => {
 
   if (data.docs.length > 0) {
     return (
-      <div className="flex flex-col flex-1 gap-5">
-        <h2 className="font-medium">Отзывы</h2>
+      <div className="flex flex-col flex-1 gap-5 max-sm:p-5">
+        <h2 className="font-medium max-sm:p-4">Отзывы</h2>
         <div className="flex flex-col gap-4">
           <PaginationWrapper
             limit={limit}

@@ -16,7 +16,7 @@ export const SearchResulList = ({ data }: SearchResulListProps) => {
   return (
     <div className="flex flex-col h-full overflow-auto">
       {sortedData.map((movie) => (
-        <SearchResulCard movie={movie} />
+        <SearchResulCard movie={movie} key={movie.id} />
       ))}
     </div>
   );

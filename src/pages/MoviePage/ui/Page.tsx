@@ -9,9 +9,21 @@ import { ActorsPagination } from "./ActorsPagination/ActorsPagination";
 import { Disclosure } from "@/shared";
 import { ReviewPagination } from "./ReviewPagination/ReviewPagination";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { setInputTerm, setSearchPanelStatus } from "@/entities/search";
 
 export const MoviePage = () => {
+  const isOpen = useAppSelector((state) => state.search.searchPanelStatus);
+  const dispatch = useAppDispatch();
+
   let { id } = useParams();
+
+  useEffect(() => {
+    if (isOpen) {
+      dispatch(setSearchPanelStatus(!isOpen));
+      dispatch(setInputTerm(""));
+    }
+  }, []);
 
   const { data: movieData, isLoading: movieLoading } = useFetchMovieByIdQuery({
     id,
@@ -23,18 +35,6 @@ export const MoviePage = () => {
     useFetchSeasonsAndSeriesQuery({
       movieId: id,
     });
-
-  useEffect(() => {
-    console.log(movieData);
-  }, [movieData]);
-
-  useEffect(() => {
-    console.log(postersData);
-  }, [postersData]);
-
-  useEffect(() => {
-    console.log(seasonsData);
-  }, [seasonsData]);
 
   if (movieLoading) {
     return (

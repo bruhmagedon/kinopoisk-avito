@@ -1,14 +1,20 @@
 import { SearchOutput } from "./SearchOutput";
 import { Button } from "@/shared";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { Find } from "@/shared/assets";
-import { setSearchTerm } from "@/entities/search";
+import {
+  setInputTerm,
+  setSearchPanelStatus,
+  setSearchTerm,
+} from "@/entities/search";
 import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage";
 
 export const SearchPanel = () => {
-  const [term, setTerm] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  // const [term, setTerm] = useState("");
+  const term = useAppSelector((state) => state.search.inputTerm);
+  const isOpen = useAppSelector((state) => state.search.searchPanelStatus);
+  // const [isOpen, setIsOpen] = useState(false);
   const searchPanelRef = useRef<HTMLDivElement>(null);
 
   const dispatch = useAppDispatch();
@@ -25,12 +31,12 @@ export const SearchPanel = () => {
       searchPanelRef.current &&
       !searchPanelRef.current.contains(event.target as Node)
     ) {
-      setIsOpen(false);
+      dispatch(setSearchPanelStatus(false));
     }
   };
 
   const handleFormClick = () => {
-    setIsOpen(!isOpen);
+    dispatch(setSearchPanelStatus(!isOpen));
   };
 
   const onDispatchTerm = () => {
@@ -39,7 +45,7 @@ export const SearchPanel = () => {
   };
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTerm(e.currentTarget.value);
+    dispatch(setInputTerm(e.currentTarget.value));
   };
 
   return (

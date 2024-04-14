@@ -1,8 +1,10 @@
 import { useFetchSearchQuery } from "@/entities/movies";
 import { Button, useDebounce } from "@/shared";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchResulList } from "./SearchResultList";
 import { Close, HistoryIcon } from "@/shared/assets";
+import { useAppDispatch } from "@/app/store/store";
+import { setInputTerm } from "@/entities/search";
 
 interface SearchOutputProps {
   className?: string;
@@ -15,6 +17,8 @@ const SEARCH_PAGE = 1;
 export const SearchOutput = ({ keyword }: SearchOutputProps) => {
   const debouncedKeywords = useDebounce(keyword, 1000);
 
+  const dispatch = useAppDispatch();
+
   const [searchTerms, setSearchTerms] = useState(
     JSON.parse(localStorage.getItem("searchTerms") || "[]")
   );
@@ -25,16 +29,17 @@ export const SearchOutput = ({ keyword }: SearchOutputProps) => {
     page: SEARCH_PAGE,
   });
 
-  useEffect(() => {
-    console.log(searchTerms);
-  }, [searchTerms]);
-
   const handleDeleteSearchTerm = (termToDelete: string) => {
     const updatedSearchTerms = searchTerms.filter(
       (term: string) => term !== termToDelete
     );
     localStorage.setItem("searchTerms", JSON.stringify(updatedSearchTerms));
     setSearchTerms(updatedSearchTerms);
+  };
+
+  const handleSearchTerm = (term: string) => {
+    dispatch(setInputTerm(term));
+    console.log(term);
   };
 
   if (keyword && data) {
@@ -44,7 +49,6 @@ export const SearchOutput = ({ keyword }: SearchOutputProps) => {
       </div>
     );
   } else if (searchTerms.length > 0) {
-    console.log(searchTerms);
     return (
       <div className="absolute z-50 w-full max-h-[400px] overflow-auto bg-panel-darker-bg border-[1px] border-gray-800 rounded-lg top-12">
         <ul>
@@ -54,6 +58,7 @@ export const SearchOutput = ({ keyword }: SearchOutputProps) => {
               <li
                 key={index}
                 className="text-white p-3 font-medium flex items-center justify-center gap-2 cursor-pointer hover:bg-input-bg"
+                onClick={() => handleSearchTerm(term)}
               >
                 <HistoryIcon />
                 <div className="flex-1">{term}</div>

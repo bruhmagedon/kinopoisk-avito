@@ -17,13 +17,12 @@ export function buildPlugins({
       template: paths.html,
     }),
     new Dotenv({
-      path: "./.env",
+      systemvars: true,
     }),
   ];
 
   if (isDev) {
     plugins.push(new webpack.ProgressPlugin());
-    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   if (isProd) {

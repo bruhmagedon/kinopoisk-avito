@@ -1,7 +1,7 @@
 interface usePaginationProps {
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  totalPages: number;
-  currentPage: number;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
+  totalPages?: number;
+  currentPage?: number;
 }
 
 export const usePagination = ({
@@ -21,7 +21,6 @@ export const usePagination = ({
     setCurrentPage(1);
   };
   const handleEndPage = () => {
-    console.log(totalPages);
     setCurrentPage(totalPages);
   };
 

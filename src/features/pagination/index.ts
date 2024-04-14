@@ -1,2 +1,3 @@
 import PaginationWrapper from "./ui/PagginationWrapper";
-export { PaginationWrapper };
+import { getPaginatedData } from "./utils/getPaginatedData";
+export { PaginationWrapper, getPaginatedData };

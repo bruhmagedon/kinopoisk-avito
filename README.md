@@ -10,7 +10,8 @@
 
 `npm start`
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/62ea2dd0-48aa-43f5-b039-3272606e6629/36b99bc3-5c4f-4e5a-938f-998d4a8ee91b/Untitled.png)
+![image](https://github.com/bruhmagedon/kinopoisk/assets/99552300/da426ef3-d69b-4ec9-9b04-b39ff9729f71)
+
 
 # Функционирование проекта
 

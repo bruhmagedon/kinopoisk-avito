@@ -1,69 +1,53 @@
-import { Button, Select } from "@/shared";
-import { useFilters } from "../hooks/useFilters";
-import withSkelton from "@/shared/hooks/withSkeleton";
-import { Filter, FilterTypes } from "@/entities/filters";
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { setFilterQuery } from "@/entities/filters/model/FiltersSlice";
+import { withSkelton } from "@/shared";
+import { useAppDispatch } from "@/app/store/store";
+import { useFilters, useFiltersReturnType } from "../hooks/useFilters";
+import { Button } from "@/shared";
+import { FiltersVariant } from "./FiltersVariat";
 
 interface FiltersPanelProps {
-  data?: FilterTypes;
-  filterQuery: () => void;
-  resetFilterQuery: () => void;
+  data?: useFiltersReturnType["data"];
+  isLoading?: boolean;
 }
 
 export const FiltersPanel = () => {
   const { isLoading, data } = useFilters();
   const dispatch = useAppDispatch();
 
-  const filterQuery = () => {
-    dispatch(setFilterQuery(true));
-  };
-  const resetFilterQuery = () => {
-    dispatch(setFilterQuery(false));
-  };
-
   return (
     <>
-      <div className="bg-primary-bg w-full py-6 px-3 flex flex-col gap-3 rounded-2xl">
-        <FiltersPanelWithSekeleton
-          isLoading={isLoading}
-          data={data}
-          filterQuery={() => filterQuery()}
-          resetFilterQuery={() => resetFilterQuery()}
-        />
+      <div className="bg-panel-darker-bg text-white w-full py-6 px-3 flex flex-col gap-3 rounded-2xl">
+        <FiltersPanelWithSekeleton isLoading={isLoading} data={data} />
       </div>
     </>
   );
 };
 
-const View = ({ data, filterQuery, resetFilterQuery }: FiltersPanelProps) => {
+const View = ({ data }: FiltersPanelProps) => {
   return (
     <>
-      <Select filterData={data.genres} type="genres.name" />
-      <Select filterData={data.countries} type="countries.name" />
-      <Select filterData={data.type} type="type" />
-      <Select filterData={data.status} type="status" />
-      <Button onClick={filterQuery}>{"Принять"}</Button>
-      <Button onClick={resetFilterQuery}>{"Сбросить"}</Button>
+      <h2 className="text-xl">Фильтры</h2>
+      <FiltersVariant data={data.genres} text="По жанрам" type="genres.name" />
+      <FiltersVariant
+        data={data.countries}
+        text="По странам"
+        type="countries.name"
+      />
+      <FiltersVariant data={data.type} text="По типам" type="type" />
+      <FiltersVariant data={data.status} text="По статусу" type="status" />
+      <FiltersVariant data={data.year} text="По году" type="year" />
+      <Button className="bg-green-400 text-black rounded-lg h-[36px] hover:bg-green-500 mt-3">
+        {"Принять"}
+      </Button>
+      <Button className="bg-red-400 text-black rounded-lg h-[36px] hover:bg-red-500">
+        {"Сбросить"}
+      </Button>
     </>
   );
 };
 
 const FiltersPanelWithSekeleton = withSkelton<FiltersPanelProps>(
   View,
+  "column",
   "list",
-  4
+  5
 );
-
-// isLoading: boolean;
-// data: {
-//     genres: Filter[];
-//     countries: Filter[];
-//     status: Filter[];
-//     type: Filter[];
-// };
-
-// Filter {
-//   name: string | number;
-//   slug?: string;
-// }

@@ -38,7 +38,7 @@ export const ActorCard = ({ person }: ActorCardProps) => {
             />
           </PopoverHandler>
           {/* Текст при наведении */}
-          <PopoverContent className="z-50 max-w-[250px] text-elipsis overflow-hidden">
+          <PopoverContent className="z-50 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden  text-white bg-panel-darker-bg">
             {person.name}
           </PopoverContent>
         </Popover>

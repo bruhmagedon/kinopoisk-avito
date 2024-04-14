@@ -77,13 +77,3 @@ const SimilarMovieCarousel = ({ similarMovie }: SimilarMovieCarouselProps) => {
     </TailwindCarousel>
   );
 };
-
-{
-  /* <ul>
-<TailwindCarousel className="rounded-xl max-h-[800px]">
-  {similarMovie.slice(0, 9).map((movie) => {
-    return <MovieCard movie={movie} />;
-  })}
-</TailwindCarousel>
-</ul> */
-}

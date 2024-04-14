@@ -1,6 +1,6 @@
 import { SelectedFilters } from "@/entities/filters/model/FiltersSlice";
 import { MovieIdApiResponse } from "./MovieTypes";
-import { FILTER_TYPES } from "@/features/filters";
+
 export interface MoviesApiResponse {
   docs: MovieIdApiResponse[];
 }
@@ -13,6 +13,7 @@ export type MovieId = {
 interface IQueryParams extends SelectedFilters {
   limit: number;
   page: number;
+  query: string;
   // pages: number;
   // total: number;
 }

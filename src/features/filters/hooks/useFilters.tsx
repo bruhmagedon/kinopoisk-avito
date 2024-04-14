@@ -1,26 +1,36 @@
-import { Filter, useFetchFiltersQuery } from "@/entities/filters";
-import { useState } from "react";
+import { useFetchFiltersQuery } from "@/entities/filters";
+import { FilterType } from "@/entities/filters/model/types";
+
+import _ from "lodash";
+
+export type useFiltersReturnType = ReturnType<typeof useFilters>;
 
 export const useFilters = () => {
-  //Здесь нужно будет достать вообще всю инфу по фильтрам
+  const basicFilter: FilterType = {
+    name: "Нет",
+    slug: "",
+  };
 
   // Запросы - тип, жанры, год(хардкод, можно рэнжом), статус, страна
   const { data: genresData } = useFetchFiltersQuery({
     field: "genres.name",
-    // № Название жанра должно быть с большой буквы
   });
   const { data: countriesData } = useFetchFiltersQuery({
     field: "countries.name",
   });
   const { data: statusData } = useFetchFiltersQuery({
     field: "status",
-    // № Русифицировать (ключ значение, где ключ идёт в редакс, значение выводим)
   });
   const { data: typesData } = useFetchFiltersQuery({
     field: "type",
-    // № Русифицировать (ключ значение, где ключ идёт в редакс, значение выводим)
   });
-  // №Добавить год
+
+  const yearsData: FilterType[] = _.range(1890, 2030).map((year) => {
+    return {
+      name: year.toString(),
+      slug: year.toString(),
+    };
+  });
 
   let isLoading = true;
   if (genresData && countriesData && statusData && typesData) {
@@ -28,10 +38,11 @@ export const useFilters = () => {
     return {
       isLoading,
       data: {
-        genres: genresData,
-        countries: countriesData,
-        status: statusData,
-        type: typesData,
+        genres: [basicFilter, ...genresData],
+        countries: [basicFilter, ...countriesData],
+        status: [basicFilter, ...statusData],
+        type: [basicFilter, ...typesData],
+        year: [basicFilter, ...yearsData],
       },
     };
   }

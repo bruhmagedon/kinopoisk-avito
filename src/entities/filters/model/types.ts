@@ -1,16 +1,16 @@
-// №Это название можно тоже унифицировать для селектов
-export interface Filter {
-  name: string | number;
-  slug?: string;
-}
-
-export interface FilterParams {
+export interface FilterApiParams {
   field: string;
 }
 
-export interface FilterTypes {
-  genres?: Filter[];
-  countries?: Filter[];
-  status?: Filter[];
-  type?: Filter[];
+export type FilterApiResponse = FilterType[];
+export interface FilterType {
+  name?: string;
+  slug?: string;
+}
+
+export enum FILTER_TYPES {
+  genres = "genres.name",
+  countries = "countries.name",
+  status = "status",
+  type = "type",
 }

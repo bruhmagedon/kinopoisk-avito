@@ -1,12 +1,10 @@
-import { useAppSelector } from "@/app/store/store";
-import { FilterTypes } from "@/entities/filters";
-import { SelectedFilters } from "@/entities/filters/model/FiltersSlice";
-import { useFetchAllMoviesQuery } from "@/entities/movies";
-import { PaginationWrapper } from "@/features/pagination";
-import { LoadMoreButton } from "@/shared";
-
-import { MovieList } from "@/widgets/Movies";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@/app/store/store";
+import { SelectedFilters } from "@/entities/filters";
+import { useFetchMoviesQuery } from "@/entities/movies";
+import { PaginationWrapper } from "@/features/pagination";
+import { LoadMoreButton, useDebounce } from "@/shared";
+import { MovieList } from "@/widgets/Movies";
 
 export const MoviePanelRequest = () => {
   const { filters, isFilterQuery } = useAppSelector((state) => state.filters);
@@ -21,26 +19,29 @@ export const MoviePanelRequest = () => {
     // }
   }, [isFilterQuery]);
 
-  return <MoviePanel filters={filtersState} />;
+  return <MoviePanel />;
 };
 
-interface MoviePanelProps {
-  filters: SelectedFilters;
-  genres?: string | number;
-  countries?: string | number;
-  status?: string | number;
-  type?: string | number;
-}
+const TOTAL = 100;
 
-const MoviePanel = ({ filters }: MoviePanelProps) => {
-  const TOTAL = 100; // Брать из апи (или редакса, короч надо будет чота придумать)
+const MoviePanel = () => {
+  const keyword = useAppSelector((state) => state.search.keyword);
+  const filters = useAppSelector((state) => state.filters.filters);
+  const debouncedKeywords = useDebounce(keyword, 1000);
+
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
+
+  // Пагинация
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(12); //лимит будет выставляться из фильтров
 
-  const { data, isLoading } = useFetchAllMoviesQuery({
+  const { data, isLoading } = useFetchMoviesQuery({
+    query: debouncedKeywords,
     limit,
     page: currentPage,
-    // ...filters,
+    ...filters,
   });
 
   return (
@@ -51,12 +52,11 @@ const MoviePanel = ({ filters }: MoviePanelProps) => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         totalPages={TOTAL}
+        type="large"
       >
         {
           <div className="flex flex-col gap-8">
-            {/* № Ппробовать пофиксить добавить скелетон при переключение пагинации (когда долгая загрузка) */}
             <MovieList data={data && data.docs} isLoading={isLoading} />
-            <LoadMoreButton />
           </div>
         }
       </PaginationWrapper>

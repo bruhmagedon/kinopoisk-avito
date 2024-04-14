@@ -18,18 +18,18 @@ export default function Disclosure({
 
   return (
     <div className="w-full">
-      <ul className="mx-auto w-full rounded-2xl bg-white p-2 flex flex-col gap-3">
+      <ul className="mx-auto w-full rounded-2xl bg-panel-darker-bg p-2 flex flex-col gap-3">
         {seasonsData.docs.map((season, index) => {
           return (
             <TailwinDisclosure key={index}>
               {({ open }) => (
                 <>
-                  <TailwinDisclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
+                  <TailwinDisclosure.Button className="flex w-full justify-between rounded-lg bg-primary px-4 py-2 text-left text-sm font-medium text-white hover:bg-[#1BA54B] focus:outline-none focus-visible:ring focus-visible:ring-[#1BA54B]/75">
                     <span>{season.name}</span>
                     <ChevronUpIcon
                       className={`${
                         open ? "rotate-180 transform" : ""
-                      } h-5 w-5 text-purple-500`}
+                      } h-5 w-5 text-white`}
                     />
                   </TailwinDisclosure.Button>
                   <Transition
@@ -49,24 +49,6 @@ export default function Disclosure({
             </TailwinDisclosure>
           );
         })}
-
-        {/* <TailwinDisclosure as="div" className="mt-2">
-          {({ open }) => (
-            <>
-              <TailwinDisclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
-                <span>Do you offer technical support?</span>
-                <ChevronUpIcon
-                  className={`${
-                    open ? "rotate-180 transform" : ""
-                  } h-5 w-5 text-purple-500`}
-                />
-              </TailwinDisclosure.Button>
-              <TailwinDisclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500">
-                No.
-              </TailwinDisclosure.Panel>
-            </>
-          )}
-        </TailwinDisclosure> */}
       </ul>
     </div>
   );

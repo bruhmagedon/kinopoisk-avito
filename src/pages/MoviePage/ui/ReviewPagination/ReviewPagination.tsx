@@ -23,21 +23,25 @@ export const ReviewPagination = ({ movieId }: ReviewPaginationProps) => {
     return <div>Загрузка</div>;
   }
 
-  return (
-    <PaginationWrapper
-      limit={limit}
-      siblings={1}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-      totalPages={data.pages}
-    >
-      {
+  if (data.docs.length > 0) {
+    return (
+      <div className="flex flex-col flex-1 gap-5">
+        <h2 className="font-medium">Отзывы</h2>
         <div className="flex flex-col gap-4">
-          <ReviewPaginationList isLoading={isLoading} rewiews={data.docs} />
+          <PaginationWrapper
+            limit={limit}
+            siblings={1}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={data.pages}
+            type="small"
+          >
+            {<ReviewPaginationList isLoading={isLoading} rewiews={data.docs} />}
+          </PaginationWrapper>
         </div>
-      }
-    </PaginationWrapper>
-  );
+      </div>
+    );
+  }
 };
 
 interface ReviewPaginationListProps {

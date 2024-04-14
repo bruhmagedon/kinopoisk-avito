@@ -4,6 +4,7 @@ import { PaginationButtons } from "./PaginationButtons";
 
 interface PaginationProps {
   children: React.ReactNode;
+  type: "large" | "small";
 }
 
 const PaginationWrapper = ({
@@ -13,10 +14,7 @@ const PaginationWrapper = ({
   const ipaginationProps = usePagination({ ...paginationProps });
   return (
     <>
-      {/* № Если надо будет унифицировать расположение */}
-      {/* {top && <PaginationButtons {...paginationProps} />} */}
       {children}
-      {/* {bottom && <PaginationButtons {...paginationProps} />} */}
       <PaginationButtons {...paginationProps} {...ipaginationProps} />
     </>
   );

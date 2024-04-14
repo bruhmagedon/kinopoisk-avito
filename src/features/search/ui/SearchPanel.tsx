@@ -1,12 +1,23 @@
 import { SearchOutput } from "./SearchOutput";
-import Find from "@/shared/assets/icons/Find";
 import { Button } from "@/shared";
 import { useEffect, useRef, useState } from "react";
+import { useAppDispatch } from "@/app/store/store";
+import { Find } from "@/shared/assets";
+import { setSearchTerm } from "@/entities/search";
 
 export const SearchPanel = () => {
   const [term, setTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const searchPanelRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -23,32 +34,22 @@ export const SearchPanel = () => {
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.currentTarget.value);
+    dispatch(setSearchTerm(e.currentTarget.value));
   };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log(term);
-  }, [term]);
 
   return (
     <div className="w-[35%] mx-auto relative" ref={searchPanelRef}>
       <form className="w-full" onClick={handleFormClick}>
-        <div className="flex bg-[#F6F7FB] h-[37px] items-center justify-between rounded-md">
+        <div className="flex bg-input-bg h-[37px] items-center justify-between rounded-lg">
           <div
             className={
-              "flex items-center gap-3 flex-1  h-full border-[3px] hover:border-black rounded-md pl-1"
+              "flex items-center gap-3 flex-1  h-full border-[2px] border-input-bg hover:border-[#CDCDCD] rounded-md pl-3"
             }
           >
             <input
               type="text"
               placeholder="Поиск фильма"
-              className="outline-none bg-[#F6F7FB] w-full"
+              className="outline-none bg-input-bg w-full text-white"
               value={term}
               onChange={onSearch}
             />
@@ -57,13 +58,13 @@ export const SearchPanel = () => {
             className="w-[35px] h-full flex justify-center items-center focus:bg-gray-200 outline-none"
             disabled={!isOpen}
           >
-            <Find />
+            <Find className="stroke-white" />
           </Button>
         </div>
       </form>
 
       {isOpen && (
-        <SearchOutput className="absolute w-full h-[400px] bg-green-300 z-50 rounded-lg top-12">
+        <SearchOutput className="absolute z-50 w-full h-[400px] bg-green-300  rounded-lg top-12">
           <div className="w-full h-full"></div>
         </SearchOutput>
       )}

@@ -1,9 +1,9 @@
-import { Filters } from "@/pages/MainPage/ui/Filters/Filters";
+import { Filters } from "./Filters/Filters";
 import { MoviePanelRequest } from "./MoviePanel/MoviePanel";
 
 export const MainPage = () => {
   return (
-    <div className="p-[24px] relative">
+    <div className="py-[24px] relative bg-darker-bg">
       <div className="grid grid-cols-filter-list column-gap items-start">
         <Filters />
         <MoviePanelRequest />

@@ -9,6 +9,7 @@ import {
   ReviewApiResponse,
 } from "../model/MovieApiTypes";
 import { MovieIdApiResponse } from "../model/MovieTypes";
+import { useAppSelector } from "@/app/store/store";
 
 const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
 
@@ -24,14 +25,29 @@ export const movieApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    fetchAllMovies: builder.query<MoviesApiResponse, MovieParamsType>({
+    fetchMovies: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
-        return {
-          url: `movie`,
-          params: {
-            ...params,
-          },
-        };
+        const { query, ...otherParams } = params;
+        const filteredOtherParams = Object.entries(otherParams)
+          .filter(([_, value]) => value !== "")
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
+        if (query != "") {
+          return {
+            url: `movie/search`,
+            params: {
+              query,
+              ...filteredOtherParams,
+            },
+          };
+        } else {
+          return {
+            url: `movie`,
+            params: {
+              ...filteredOtherParams,
+            },
+          };
+        }
       },
     }),
     fetchMovieById: builder.query<MovieIdApiResponse, MovieId>({
@@ -73,15 +89,27 @@ export const movieApi = createApi({
         };
       },
     }),
+    fetchSearch: builder.query<any, any>({
+      query: (params) => {
+        return {
+          url: `movie/search`,
+          params: {
+            ...params,
+          },
+        };
+      },
+    }),
   }),
 });
 
 export const {
-  useFetchAllMoviesQuery,
+  useFetchMoviesQuery,
   useFetchMovieByIdQuery,
   useFetchPostersQuery,
   useFetchSeasonsAndSeriesQuery,
   useFetchReviewQuery,
+  useFetchSearchQuery,
 } = movieApi;
 
 // https://api.kinopoisk.dev/v1.4/review
+// https://api.kinopoisk.dev/v1.4/

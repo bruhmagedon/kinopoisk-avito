@@ -1,4 +1,5 @@
 import { FiltersPanel } from "./ui/FiltersPanel";
-import { FILTER_TYPES } from "./model/types";
+import { SortPanel } from "./ui/SortPanel";
+import { SelectFilter } from "./ui/SelectFilter";
 
-export { FiltersPanel, FILTER_TYPES };
+export { FiltersPanel, SelectFilter, SortPanel };

@@ -20,16 +20,19 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
   }, [review]);
   return (
     <>
-      <li className="cursor-pointer">
+      <li
+        className="cursor-pointer bg-panel-darker-bg rounded-lg flex flex-col gap-3 p-3 scroll--simple
+		.inner"
+      >
         <header className="">
-          <h3>{review.author}</h3>
-          <p className="">{review.type}</p>
+          <p className="font-medium">{review.type}</p>
+          <h3 className="font-medium text-gray-500 text-sm">{review.author}</h3>
         </header>
         <section>
           <div className="h-[120px] overflow-auto">
             <p dangerouslySetInnerHTML={{ __html: review.review }} />
           </div>
-          <p>{formatedDate}</p>
+          <p className="mt-3 text-gray-500 text-sm">{formatedDate}</p>
         </section>
       </li>
     </>

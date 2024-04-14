@@ -1,12 +1,18 @@
 import { useFetchFiltersQuery, filterApi } from "./api/filtersApi";
-import { Filter, FilterTypes } from "./model/types";
-import FiltersSlice, { setFilter } from "./model/FiltersSlice";
+import {
+  FilterApiResponse,
+  FilterApiParams,
+  FILTER_TYPES,
+} from "./model/types";
+import FiltersSlice, { setFilter, SelectedFilters } from "./model/FiltersSlice";
 
 export {
-  useFetchFiltersQuery,
-  Filter,
-  FilterTypes,
+  SelectedFilters,
   filterApi,
+  useFetchFiltersQuery,
   FiltersSlice,
   setFilter,
+  FilterApiResponse,
+  FilterApiParams,
+  FILTER_TYPES,
 };

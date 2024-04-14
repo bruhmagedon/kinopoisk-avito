@@ -12,8 +12,8 @@ export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
   const [limit] = useState(6); //лимит будет выставляться из фильтров
 
   return (
-    //№Добавить унификацию стилей пагинации
     <PaginationWrapper
+      type="small"
       limit={limit}
       siblings={1}
       currentPage={currentPage}
@@ -31,9 +31,9 @@ export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
 
 const ActorsList = ({ persons }: ActorsPaginationProps) => {
   return (
-    <ul className="grid grid-cols-6 gap-[24px]">
-      {persons.map((person) => {
-        return <ActorCard person={person} key={person.id} />;
+    <ul className="grid grid-cols-6 gap-[24px] h-[200px]">
+      {persons.map((person, index) => {
+        return <ActorCard person={person} key={index} />;
       })}
     </ul>
   );

@@ -13,6 +13,7 @@ export const SeriesPagination = ({ series }: SeriesPaginationProps) => {
 
   return (
     <PaginationWrapper
+      type="small"
       limit={limit}
       siblings={1}
       currentPage={currentPage}
@@ -20,7 +21,7 @@ export const SeriesPagination = ({ series }: SeriesPaginationProps) => {
       totalPages={Math.ceil(series.length / limit)}
     >
       {
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 mb-7">
           <SeriesList series={getPaginatedData(series, limit, currentPage)} />
         </div>
       }

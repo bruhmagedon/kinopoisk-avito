@@ -1,10 +1,11 @@
 import {
-  useFetchAllMoviesQuery,
+  useFetchMoviesQuery,
   movieApi,
   useFetchMovieByIdQuery,
   useFetchPostersQuery,
   useFetchSeasonsAndSeriesQuery,
   useFetchReviewQuery,
+  useFetchSearchQuery,
 } from "./api/moviesApi";
 import type {
   MoviesApiResponse,
@@ -18,7 +19,7 @@ export {
   PostersApiResponse,
   MovieIdApiResponse,
   MoviesApiResponse,
-  useFetchAllMoviesQuery,
+  useFetchMoviesQuery,
   movieApi,
   useFetchMovieByIdQuery,
   useFetchPostersQuery,
@@ -27,4 +28,5 @@ export {
   useFetchSeasonsAndSeriesQuery,
   MovieId,
   useFetchReviewQuery,
+  useFetchSearchQuery,
 };

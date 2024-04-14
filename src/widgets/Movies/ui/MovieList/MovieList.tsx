@@ -1,6 +1,6 @@
 import { MovieIdApiResponse } from "@/entities/movies";
-import withSkelton from "@/shared/hooks/withSkeleton";
 import { MovieCard } from "../MovieCard/MovieCard";
+import { withSkelton } from "@/shared";
 
 interface MovieListProps {
   data?: MovieIdApiResponse[] | null;
@@ -16,6 +16,11 @@ const MovieList = ({ data: docs }: MovieListProps) => {
   );
 };
 
-const MovieListWithSkeleton = withSkelton<MovieListProps>(MovieList, "list", 5);
+const MovieListWithSkeleton = withSkelton<MovieListProps>(
+  MovieList,
+  "column",
+  "list",
+  5
+);
 
 export default MovieListWithSkeleton;

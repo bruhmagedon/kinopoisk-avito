@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { FilterParams, Filter } from "../model/types";
+import { FilterApiParams, FilterApiResponse, FilterType } from "../model/types";
 
 const X_API_KEY = "WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M";
 
-// №Думаю все фильтры нужно захардкодить, чтобы лишний раз не делать запрос, но хз
 export const filterApi = createApi({
   reducerPath: "filterApi",
   baseQuery: fetchBaseQuery({
@@ -15,7 +14,7 @@ export const filterApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    fetchFilters: builder.query<Filter[], FilterParams>({
+    fetchFilters: builder.query<FilterType[], FilterApiParams>({
       query: (params) => {
         const { field } = params;
         return {

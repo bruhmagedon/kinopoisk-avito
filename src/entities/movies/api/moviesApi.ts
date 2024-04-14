@@ -89,7 +89,7 @@ export const movieApi = createApi({
         };
       },
     }),
-    fetchSearch: builder.query<any, any>({
+    fetchSearch: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
         return {
           url: `movie/search`,

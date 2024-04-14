@@ -51,7 +51,11 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
             />
           </PopoverHandler>
           <PopoverContent className="z-30 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden text-sm p-2 text-white bg-panel-darker-bg border-gray-700 border-[1px]">
-            {movie.name.replace(/\s/g, "") == "" ? movie.enName : movie.name}
+            {movie.name
+              ? movie.name.replace(/\s/g, "") == ""
+                ? movie.alternativeName
+                : movie.name
+              : movie.alternativeName || movie.enName}
           </PopoverContent>
         </Popover>
         {movie.rating?.kp ? (

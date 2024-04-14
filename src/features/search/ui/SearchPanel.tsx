@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@/app/store/store";
 import { Find } from "@/shared/assets";
 import { setSearchTerm } from "@/entities/search";
+import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage";
 
 export const SearchPanel = () => {
   const [term, setTerm] = useState("");
@@ -32,9 +33,13 @@ export const SearchPanel = () => {
     setIsOpen(!isOpen);
   };
 
+  const onDispatchTerm = () => {
+    dispatch(setSearchTerm(term));
+    saveSearchTermToLocalStorage(term);
+  };
+
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.currentTarget.value);
-    dispatch(setSearchTerm(e.currentTarget.value));
   };
 
   return (
@@ -55,19 +60,20 @@ export const SearchPanel = () => {
             />
           </div>
           <Button
-            className="w-[35px] h-full flex justify-center items-center focus:bg-gray-200 outline-none"
-            disabled={!isOpen}
+            className={
+              "w-[35px] h-full flex justify-center items-center outline-none " +
+              (isOpen && "hover:bg-[#3A3A3A] rounded-lg")
+            }
+            // disabled={!isOpen}
+            onClick={onDispatchTerm}
           >
             <Find className="stroke-white" />
           </Button>
         </div>
       </form>
 
-      {isOpen && (
-        <SearchOutput className="absolute z-50 w-full h-[400px] bg-green-300  rounded-lg top-12">
-          <div className="w-full h-full"></div>
-        </SearchOutput>
-      )}
+      {/* Посмотреть потом как можно лучше всего реализовать форму */}
+      {isOpen && <SearchOutput keyword={term} />}
     </div>
   );
 };

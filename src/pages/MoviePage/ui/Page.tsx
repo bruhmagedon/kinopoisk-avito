@@ -65,7 +65,8 @@ export const MoviePage = () => {
                 <p className="text-gray-500">{movieData.alternativeName}</p>
               </div>
               <p>
-                {movieData.countries[0].name + ", " + movieData.year + " г."}
+                {movieData.countries[0].name}
+                {movieData.year + " г."}
               </p>
               <p>{movieData.description}</p>
             </div>

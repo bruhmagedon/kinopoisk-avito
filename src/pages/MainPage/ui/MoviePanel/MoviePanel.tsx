@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/app/store/store";
-import { SelectedFilters } from "@/entities/filters";
 import { useFetchMoviesQuery } from "@/entities/movies";
 import { PaginationWrapper } from "@/features/pagination";
-import { LoadMoreButton, useDebounce } from "@/shared";
 import { MovieList } from "@/widgets/Movies";
 
 const TOTAL = 100;
@@ -11,21 +9,21 @@ const TOTAL = 100;
 export const MoviePanel = () => {
   const keyword = useAppSelector((state) => state.search.keyword);
   const filters = useAppSelector((state) => state.filters.filters);
-  const debouncedKeywords = useDebounce(keyword, 1000);
 
   // Пагинация
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(12); //лимит будет выставляться из фильтров
 
   const { data, isLoading } = useFetchMoviesQuery({
-    query: debouncedKeywords,
     limit,
     page: currentPage,
     ...filters,
+    query: keyword,
   });
 
   useEffect(() => {
-    console.log(data, isLoading);
+    if (keyword) {
+    }
   }, [data, isLoading]);
 
   return (

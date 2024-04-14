@@ -20,10 +20,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
   }, [review]);
   return (
     <>
-      <li
-        className="cursor-pointer bg-panel-darker-bg rounded-lg flex flex-col gap-3 p-3 scroll--simple
-		.inner"
-      >
+      <li className="cursor-pointer bg-panel-darker-bg rounded-lg flex flex-col gap-3 p-3">
         <header className="">
           <p className="font-medium">{review.type}</p>
           <h3 className="font-medium text-gray-500 text-sm">{review.author}</h3>

@@ -1,10 +1,12 @@
 import { Button } from "../../../shared/ui/Button";
-import ArrowStart from "@/shared/assets/icons/arrow-start.svg";
-import ArrowPrev from "@/shared/assets/icons/arrow-prev.svg";
-import ArrowNext from "@/shared/assets/icons/arrow-next.svg";
-import ArrowEnd from "@/shared/assets/icons/arrow-end.svg";
 import { IPaginationProps } from "../model/types";
 import { usePaginationRange } from "../hooks/usePaginationRange";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 
 export const PaginationButtons = ({
   totalPages,
@@ -38,14 +40,16 @@ export const PaginationButtons = ({
           disabled={currentPage <= 1}
           className={"paggination-button pagination-button-hover " + sizeStatus}
         >
-          {<ArrowStart pointerEvents="none" />}
+          <div>
+            <ChevronsLeft />
+          </div>
         </Button>
         <Button
           disabled={currentPage <= 1}
           onClick={handlePrevPage}
           className={"paggination-button pagination-button-hover " + sizeStatus}
         >
-          {<ArrowPrev />}
+          {<ChevronLeft />}
         </Button>
         <div className="flex items-center justify-center">
           {array.map((index) => {
@@ -71,14 +75,14 @@ export const PaginationButtons = ({
           onClick={handleNextPage}
           className={"paggination-button pagination-button-hover " + sizeStatus}
         >
-          {<ArrowNext />}
+          {<ChevronRight />}
         </Button>
         <Button
           disabled={currentPage >= totalPages}
           onClick={handleEndPage}
           className={"paggination-button pagination-button-hover " + sizeStatus}
         >
-          {<ArrowEnd />}
+          {<ChevronsRight />}
         </Button>
       </div>
     </>

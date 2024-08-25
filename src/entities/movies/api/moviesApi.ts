@@ -10,7 +10,8 @@ import {
 } from "../model/MovieApiTypes";
 import { MovieIdApiResponse } from "../model/MovieTypes";
 
-const X_API_KEY = process.env.REACT_APP_API_KEY;
+// TODO Повторяется, вынести в константу в отдельный файл
+const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
 
 export const movieApi = createApi({
   reducerPath: "movieApi",

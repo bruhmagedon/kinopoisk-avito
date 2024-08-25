@@ -2,13 +2,13 @@ import { SearchOutput } from "./SearchOutput";
 import { Button } from "@/shared";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { Find } from "@/shared/assets";
 import {
   setInputTerm,
   setSearchPanelStatus,
   setSearchTerm,
 } from "@/entities/search";
 import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage";
+import { Search } from "lucide-react";
 
 export const SearchPanel = () => {
   const term = useAppSelector((state) => state.search.inputTerm);
@@ -73,7 +73,7 @@ export const SearchPanel = () => {
             }
             onClick={onDispatchTerm}
           >
-            <Find className="stroke-white" />
+            <Search />
           </Button>
         </div>
       </form>

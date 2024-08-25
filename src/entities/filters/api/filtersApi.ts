@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { FilterApiParams, FilterType } from "../model/types";
 
+const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
+
 export const filterApi = createApi({
   reducerPath: "filterApi",
   baseQuery: fetchBaseQuery({

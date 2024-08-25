@@ -2,9 +2,9 @@ import { useFetchSearchQuery } from "@/entities/movies";
 import { Button, useDebounce } from "@/shared";
 import { useState } from "react";
 import { SearchResulList } from "./SearchResultList";
-import { Close, HistoryIcon } from "@/shared/assets";
 import { useAppDispatch } from "@/app/store/store";
 import { setInputTerm } from "@/entities/search";
+import { History, X } from "lucide-react";
 
 interface SearchOutputProps {
   className?: string;
@@ -59,13 +59,13 @@ export const SearchOutput = ({ keyword }: SearchOutputProps) => {
                 className="text-white p-3 font-medium flex items-center justify-center gap-2 cursor-pointer hover:bg-input-bg"
                 onClick={() => handleSearchTerm(term)}
               >
-                <HistoryIcon />
+                <History />
                 <div className="flex-1">{term}</div>
                 <Button
                   className="hover:bg-[#3A3A3A] w-[30px] h-[30px] flex items-center justify-center rounded-lg"
                   onClick={() => handleDeleteSearchTerm(term)}
                 >
-                  {<Close />}
+                  <X />
                 </Button>
               </li>
             ))}

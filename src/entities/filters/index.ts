@@ -1,27 +1,11 @@
-import { useFetchFiltersQuery, filterApi } from "./api/filtersApi";
-import {
+export { FiltersSlice } from "./model/FiltersSlice";
+export { useFetchFiltersQuery, filterApi } from "./api/filtersApi";
+export type {
   FilterApiResponse,
   FilterApiParams,
   FILTER_TYPES,
 } from "./model/types";
-import FiltersSlice, {
-  setFilter,
-  SelectedFilters,
-  resetFilters,
-} from "./model/FiltersSlice";
+export { setFilter, resetFilters } from "./model/FiltersSlice";
+export type { SelectedFilters } from "./model/FiltersSlice";
 
-import { setSort, resetSort } from "./model/SortSlice";
-
-export {
-  setSort,
-  resetSort,
-  resetFilters,
-  SelectedFilters,
-  filterApi,
-  useFetchFiltersQuery,
-  FiltersSlice,
-  setFilter,
-  FilterApiResponse,
-  FilterApiParams,
-  FILTER_TYPES,
-};
+export { setSort, resetSort } from "./model/SortSlice";

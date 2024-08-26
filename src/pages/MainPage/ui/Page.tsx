@@ -1,4 +1,4 @@
-import { MoviePanel } from './MoviePanel/MoviePanel';
+import { MoviePanel } from "./MoviePanel/MoviePanel"
 
 export const MainPage = () => {
   // useEffect(() => {
@@ -8,11 +8,11 @@ export const MainPage = () => {
   // }, []);
 
   return (
-    <div className='p-6 flex-1'>
+    <div className='flex-1 p-6'>
       <div className='gap gap-4'>
         {/* <Filters /> */}
         <MoviePanel />
       </div>
     </div>
-  );
-};
+  )
+}

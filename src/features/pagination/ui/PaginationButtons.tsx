@@ -1,13 +1,8 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
 
-import { Button } from '../../../shared/ui/Button';
-import { usePaginationRange } from '../hooks/usePaginationRange';
-import type { IPaginationProps } from '../model/types';
+import { Button } from "../../../shared/ui/Button"
+import { usePaginationRange } from "../hooks/usePaginationRange"
+import type { IPaginationProps } from "../model/types"
 
 export const PaginationButtons = ({
   totalPages,
@@ -21,21 +16,15 @@ export const PaginationButtons = ({
   siblings,
   type
 }: IPaginationProps) => {
-  const activePageStyles = 'font-medium bg-primary cursor-auto';
-  const array = usePaginationRange(totalPages, currentPage, limit, siblings);
-  const textStatus = type === 'small' ? 'text-lg' : 'text-2xl';
+  const activePageStyles = "font-medium bg-primary cursor-auto"
+  const array = usePaginationRange(totalPages, currentPage, limit, siblings)
+  const textStatus = type === "small" ? "text-lg" : "text-2xl"
   const sizeStatus =
-    type === 'small'
-      ? ' w-[30px] h-[30px] '
-      : ' max-sm:w-[30px] max-sm:h-[30px] w-[45px] h-[45px] ';
+    type === "small" ? " w-[30px] h-[30px] " : " max-sm:w-[30px] max-sm:h-[30px] w-[45px] h-[45px] "
 
   return (
     <>
-      <div
-        className={
-          `flex items-center w-full justify-center gap-[12px] ${textStatus}`
-        }
-      >
+      <div className={`flex w-full items-center justify-center gap-[12px] ${textStatus}`}>
         <Button
           onClick={handleStartPage}
           disabled={currentPage <= 1}
@@ -54,21 +43,19 @@ export const PaginationButtons = ({
         </Button>
         <div className='flex items-center justify-center'>
           {array.map((index) => {
-            const activePage = currentPage === (index as number);
+            const activePage = currentPage === (index as number)
             return (
               <button
                 onClick={() => handlePageClick(index as number)}
-                className={
-                  `paggination-button pb-[3px] pagination-button-hover ${
-                    sizeStatus
-                  }${activePage ? activePageStyles : 'cursor-pointer'}`
-                }
+                className={`paggination-button pagination-button-hover pb-[3px] ${
+                  sizeStatus
+                }${activePage ? activePageStyles : "cursor-pointer"}`}
                 key={index}
-                disabled={activePage || index === '...'}
+                disabled={activePage || index === "..."}
               >
                 {index}
               </button>
-            );
+            )
           })}
         </div>
         <Button
@@ -87,5 +74,5 @@ export const PaginationButtons = ({
         </Button>
       </div>
     </>
-  );
-};
+  )
+}

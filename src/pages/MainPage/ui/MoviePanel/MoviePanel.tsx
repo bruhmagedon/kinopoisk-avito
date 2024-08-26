@@ -1,16 +1,16 @@
-import { useMemo } from 'react';
+import { useMemo } from "react"
 
-import { fetchMovieQuery } from '@/constants/mock/fetchMovieQuert';
-import { PaginationWrapper } from '@/features/pagination';
-import { MovieList } from '@/widgets/Movies/ui/MovieList/MovieList';
+import { fetchMovieQuery } from "@/constants/mock/fetchMovieQuert"
+import { PaginationWrapper } from "@/features/pagination"
+import { MovieList } from "@/widgets/Movies/ui/MovieList/MovieList"
 
-const TOTAL = 100;
-type SortType = 'Отсутствует' | 'По названию' | 'По рейтингу' | 'По году';
+const TOTAL = 100
+type SortType = "Отсутствует" | "По названию" | "По рейтингу" | "По году"
 
 export const MoviePanel = () => {
-  const mockedMovies = useMemo(() => fetchMovieQuery, []);
+  const mockedMovies = useMemo(() => fetchMovieQuery, [])
 
-  console.log(mockedMovies);
+  console.log(mockedMovies)
 
   return (
     <section className='flex flex-col gap-12'>
@@ -32,18 +32,18 @@ export const MoviePanel = () => {
         }
       </PaginationWrapper>
     </section>
-  );
-};
+  )
+}
 
 const savePageToLocalStorage = (page: number) => {
-  localStorage.setItem('currentPage', JSON.stringify(page));
-};
+  localStorage.setItem("currentPage", JSON.stringify(page))
+}
 
 const getPageFromLocalStorage = () => {
-  const storedPage = localStorage.getItem('currentPage');
-  return storedPage ? JSON.parse(storedPage) : 1;
-};
+  const storedPage = localStorage.getItem("currentPage")
+  return storedPage ? JSON.parse(storedPage) : 1
+}
 
 const clearPageFromLocalStorage = () => {
-  localStorage.removeItem('currentPage');
-};
+  localStorage.removeItem("currentPage")
+}

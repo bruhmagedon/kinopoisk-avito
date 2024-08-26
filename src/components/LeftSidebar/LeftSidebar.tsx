@@ -1,23 +1,23 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils"
 
-import { SidebarItem } from '../SidebarItem/SidebarItem';
-import { SidebarItemsList } from '../SidebarItem/SidebarItemsList';
-import { Label } from '../ui/label';
-import { Switch } from '../ui/switch';
+import { SidebarItem } from "../SidebarItem/SidebarItem"
+import { SidebarItemsList } from "../SidebarItem/SidebarItemsList"
+import { Label } from "../ui/label"
+import { Switch } from "../ui/switch"
 
 interface SidebarProps {
-  className?: string;
+  className?: string
 }
 
 export const LeftSidebar = ({ className }: SidebarProps) => {
   return (
-    <aside className={cn('flex flex-col py-9 px-6 gap-5', className)}>
+    <aside className={cn("flex flex-col gap-5 px-6 py-9", className)}>
       <p className='text-2xl font-bold'>
         <span className='text-primary'>Flixi</span>fy
       </p>
       <nav className='flex flex-col gap-3'>
         {SidebarItemsList.map((item) => {
-          return <SidebarItem key={item.path} item={item} />;
+          return <SidebarItem key={item.path} item={item} />
         })}
       </nav>
       <hr className='' />
@@ -26,5 +26,5 @@ export const LeftSidebar = ({ className }: SidebarProps) => {
         <Label htmlFor='airplane-mode'>Dark Mode</Label>
       </div>
     </aside>
-  );
-};
+  )
+}

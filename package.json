@@ -11,7 +11,8 @@
     "dev": "vite serve",
     "preview": "vite preview",
     "lint": "npx eslint . --fix",
-    "lint-inspector": "npx @eslint/config-inspector"
+    "lint-inspector": "npx @eslint/config-inspector",
+    "format": "prettier --write \"**/*.{js,ts,tsx,html,css}\""
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -43,6 +44,8 @@
     "autoprefixer": "^10.4.19",
     "lint-staged": "^15.2.9",
     "postcss": "^8.4.38",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.4",

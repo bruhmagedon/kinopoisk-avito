@@ -1,22 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 
-import { SearchPanel } from '@/features/search';
-import { Button } from '@/shared';
+import { SearchPanel } from "@/features/search"
+import { Button } from "@/shared"
 
 export const Header = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onNavigate = () => {
-    navigate('/');
-  };
+    navigate("/")
+  }
 
   return (
-    <header className='bg-panel-darker-bg rounded-lg'>
-      <nav className='flex justify-center lg:justify-between items-center px-36 max-lg:px-5 py-5 max-lg:gap-4'>
+    <header className='rounded-lg bg-panel-darker-bg'>
+      <nav className='flex items-center justify-center px-36 py-5 max-lg:gap-4 max-lg:px-5 lg:justify-between'>
         <div className='max-lg:flex-0 cursor-pointer' onClick={onNavigate}>
-          <span className='text-white text-lg font-medium hover:text-primary'>
-            Главная
-          </span>
+          <span className='text-lg font-medium text-white hover:text-primary'>Главная</span>
         </div>
         <SearchPanel />
         <div className='flex justify-end max-lg:hidden'>
@@ -24,5 +22,5 @@ export const Header = () => {
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}

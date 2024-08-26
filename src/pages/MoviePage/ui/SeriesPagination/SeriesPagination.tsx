@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react"
 
-import type { Episode } from '@/entities/movies/model/MovieApiTypes';
-import { getPaginatedData, PaginationWrapper } from '@/features/pagination';
+import type { Episode } from "@/entities/movies/model/MovieApiTypes"
+import { getPaginatedData, PaginationWrapper } from "@/features/pagination"
 
-import { SeriesCard } from '../SeriesCard/SeriesCard';
+import { SeriesCard } from "../SeriesCard/SeriesCard"
 
 interface SeriesPaginationProps {
-  series: Episode[];
+  series: Episode[]
 }
 
 export const SeriesPagination = ({ series }: SeriesPaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [limit] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [limit] = useState(6)
 
   return (
     <PaginationWrapper
@@ -22,19 +22,19 @@ export const SeriesPagination = ({ series }: SeriesPaginationProps) => {
       setCurrentPage={setCurrentPage}
       totalPages={Math.ceil(series.length / limit)}
     >
-      <div className='flex flex-col gap-8 mb-7'>
+      <div className='mb-7 flex flex-col gap-8'>
         <SeriesList series={getPaginatedData(series, limit, currentPage)} />
       </div>
     </PaginationWrapper>
-  );
-};
+  )
+}
 
 const SeriesList = ({ series }: SeriesPaginationProps) => {
   return (
     <ul className='grid grid-rows-3 gap-[24px]'>
       {series.map((item, index) => {
-        return <SeriesCard series={item} key={index} />;
+        return <SeriesCard series={item} key={index} />
       })}
     </ul>
-  );
-};
+  )
+}

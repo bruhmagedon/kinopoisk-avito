@@ -1,17 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom"
 
-import { LeftSidebar } from '@/components/LeftSidebar/LeftSidebar';
-import { RightSidebar } from '@/components/RightSidebar/RightSidebar';
+import { LeftSidebar } from "@/components/LeftSidebar/LeftSidebar"
+import { RightSidebar } from "@/components/RightSidebar/RightSidebar"
 
 const BaseLayout = () => {
   return (
-    <div className='bg-background min-h-screen flex '>
+    <div className='flex min-h-screen bg-background'>
       {/* <Header /> */}
       <LeftSidebar />
       <Outlet />
       <RightSidebar />
     </div>
-  );
-};
+  )
+}
 
-export default BaseLayout;
+export default BaseLayout

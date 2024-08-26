@@ -6,14 +6,14 @@ import {
   useFetchReviewQuery,
   useFetchSearchQuery,
   useFetchSeasonsAndSeriesQuery
-} from './api/moviesApi';
+} from "./api/moviesApi"
 import type {
   MovieId,
   MoviesApiResponse,
   PostersApiResponse,
   SeriesApiResponse
-} from './model/MovieApiTypes';
-import type { MovieIdApiResponse, Person } from './model/MovieTypes';
+} from "./model/MovieApiTypes"
+import type { MovieIdApiResponse, Person } from "./model/MovieTypes"
 
 export {
   movieApi,
@@ -29,4 +29,4 @@ export {
   useFetchReviewQuery,
   useFetchSearchQuery,
   useFetchSeasonsAndSeriesQuery
-};
+}

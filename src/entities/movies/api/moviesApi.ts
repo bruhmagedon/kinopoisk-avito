@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 import type {
   MovieId,
@@ -8,38 +8,38 @@ import type {
   ReviewApiResponse,
   ReviewParamsType,
   SeriesApiResponse
-} from '../model/MovieApiTypes';
-import type { MovieIdApiResponse } from '../model/MovieTypes';
+} from "../model/MovieApiTypes"
+import type { MovieIdApiResponse } from "../model/MovieTypes"
 
 // TODO Повторяется, вынести в константу в отдельный файл
-const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
+const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY
 
 export const movieApi = createApi({
-  reducerPath: 'movieApi',
+  reducerPath: "movieApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.kinopoisk.dev/v1.4/',
+    baseUrl: "https://api.kinopoisk.dev/v1.4/",
     prepareHeaders: (headers) => {
-      headers.set('Content-Type', 'application/json');
-      headers.set('X-API-KEY', X_API_KEY);
-      return headers;
+      headers.set("Content-Type", "application/json")
+      headers.set("X-API-KEY", X_API_KEY)
+      return headers
     }
   }),
   endpoints: (builder) => ({
     fetchMovies: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
-        const { query, sortField, ...otherParams } = params;
+        const { query, sortField, ...otherParams } = params
         const filteredOtherParams = Object.entries(otherParams)
-          .filter(([_, value]) => value !== '')
-          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+          .filter(([_, value]) => value !== "")
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
 
-        if (query != '') {
+        if (query != "") {
           return {
             url: `movie/search`,
             params: {
               query,
               ...filteredOtherParams
             }
-          };
+          }
         } else {
           if (sortField) {
             return {
@@ -49,24 +49,24 @@ export const movieApi = createApi({
                 sortType: 1,
                 ...filteredOtherParams
               }
-            };
+            }
           } else {
             return {
               url: `movie`,
               params: {
                 ...filteredOtherParams
               }
-            };
+            }
           }
         }
       }
     }),
     fetchMovieById: builder.query<MovieIdApiResponse, MovieId>({
       query: (params) => {
-        const { id } = params;
+        const { id } = params
         return {
           url: `movie/${id}`
-        };
+        }
       }
     }),
     fetchPosters: builder.query<PostersApiResponse, MovieId>({
@@ -76,18 +76,18 @@ export const movieApi = createApi({
           params: {
             ...params
           }
-        };
+        }
       }
     }),
     fetchSeasonsAndSeries: builder.query<SeriesApiResponse, MovieId>({
       query: (params) => {
-        const { movieId } = params;
+        const { movieId } = params
         return {
           url: `season`,
           params: {
             movieId
           }
-        };
+        }
       }
     }),
     fetchReview: builder.query<ReviewApiResponse, ReviewParamsType>({
@@ -97,7 +97,7 @@ export const movieApi = createApi({
           params: {
             ...params
           }
-        };
+        }
       }
     }),
     fetchSearch: builder.query<MoviesApiResponse, MovieParamsType>({
@@ -107,11 +107,11 @@ export const movieApi = createApi({
           params: {
             ...params
           }
-        };
+        }
       }
     })
   })
-});
+})
 
 export const {
   useFetchMoviesQuery,
@@ -120,4 +120,4 @@ export const {
   useFetchSeasonsAndSeriesQuery,
   useFetchReviewQuery,
   useFetchSearchQuery
-} = movieApi;
+} = movieApi

@@ -1,62 +1,58 @@
-import { useNavigate } from 'react-router-dom';
-import { Carousel as TailwindCarousel } from '@material-tailwind/react';
+import { useNavigate } from "react-router-dom"
+import { Carousel as TailwindCarousel } from "@material-tailwind/react"
 
-import type { PostersApiResponse } from '@/entities/movies';
-import type { SimilarMovie } from '@/entities/movies/model/MovieTypes';
+import type { PostersApiResponse } from "@/entities/movies"
+import type { SimilarMovie } from "@/entities/movies/model/MovieTypes"
 
 interface CarouselProps {
-  posters?: PostersApiResponse;
-  similarMovie?: SimilarMovie[];
-  isLoading?: boolean;
+  posters?: PostersApiResponse
+  similarMovie?: SimilarMovie[]
+  isLoading?: boolean
 }
 
 export const Carousel = ({ posters, isLoading, similarMovie }: CarouselProps) => {
   if (isLoading) {
-    return <div>Загрузка</div>;
+    return <div>Загрузка</div>
   }
   return (
     <>
       {posters && <PostersCarousel posters={posters} />}
       {similarMovie && <SimilarMovieCarousel similarMovie={similarMovie} />}
     </>
-  );
-};
+  )
+}
 
 interface PostersCarouselProps {
-  posters: PostersApiResponse;
+  posters: PostersApiResponse
 }
 
 const PostersCarousel = ({ posters }: PostersCarouselProps) => {
   return (
-    <TailwindCarousel className='rounded-xl max-h-[800px] max-sm:h-auto flex items-center'>
+    <TailwindCarousel className='flex max-h-[800px] items-center rounded-xl max-sm:h-auto'>
       {posters.docs.map((item) => {
         return (
           <div className='h-full' key={item.id}>
-            <img
-              src={item.url}
-              alt={item.url}
-              className='object-cover w-full h-full rounded-lg'
-            />
+            <img src={item.url} alt={item.url} className='h-full w-full rounded-lg object-cover' />
           </div>
-        );
+        )
       })}
     </TailwindCarousel>
-  );
-};
+  )
+}
 
 interface SimilarMovieCarouselProps {
-  similarMovie: SimilarMovie[];
+  similarMovie: SimilarMovie[]
 }
 
 const SimilarMovieCarousel = ({ similarMovie }: SimilarMovieCarouselProps) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onNavigate = (event: React.MouseEvent<HTMLImageElement>) => {
-    navigate(`/movie/${event.currentTarget.getAttribute('movie-id')}`);
-  };
+    navigate(`/movie/${event.currentTarget.getAttribute("movie-id")}`)
+  }
 
   return (
-    <TailwindCarousel className='rounded-xl '>
+    <TailwindCarousel className='rounded-xl'>
       {similarMovie.map((movie) => {
         return (
           <div
@@ -65,14 +61,10 @@ const SimilarMovieCarousel = ({ similarMovie }: SimilarMovieCarouselProps) => {
             key={movie.id}
             className='h-full cursor-pointer'
           >
-            <img
-              src={movie.poster.url}
-              alt={movie.name}
-              className='object-cover h-full'
-            />
+            <img src={movie.poster.url} alt={movie.name} className='h-full object-cover' />
           </div>
-        );
+        )
       })}
     </TailwindCarousel>
-  );
-};
+  )
+}

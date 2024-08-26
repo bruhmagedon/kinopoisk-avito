@@ -1,25 +1,22 @@
-import { Disclosure as TailwinDisclosure, Transition } from '@headlessui/react';
-import { ChevronUpIcon } from '@heroicons/react/20/solid';
+import { Disclosure as TailwinDisclosure, Transition } from "@headlessui/react"
+import { ChevronUpIcon } from "@heroicons/react/20/solid"
 
-import type { SeriesApiResponse } from '@/entities/movies';
-import { SeriesPagination } from '@/pages/MoviePage/ui/SeriesPagination/SeriesPagination';
+import type { SeriesApiResponse } from "@/entities/movies"
+import { SeriesPagination } from "@/pages/MoviePage/ui/SeriesPagination/SeriesPagination"
 
 interface DisclosureProps {
-  seasonsData: SeriesApiResponse;
-  isLoading: boolean;
+  seasonsData: SeriesApiResponse
+  isLoading: boolean
 }
 
-export default function Disclosure({
-  seasonsData,
-  isLoading
-}: DisclosureProps) {
+export default function Disclosure({ seasonsData, isLoading }: DisclosureProps) {
   if (isLoading) {
-    return <div>Загрузка</div>;
+    return <div>Загрузка</div>
   }
 
   return (
     <div className='w-full'>
-      <ul className='mx-auto w-full rounded-2xl bg-panel-darker-bg p-2 flex flex-col gap-3'>
+      <ul className='mx-auto flex w-full flex-col gap-3 rounded-2xl bg-panel-darker-bg p-2'>
         {seasonsData.docs.map((season, index) => {
           return (
             <TailwinDisclosure key={index}>
@@ -28,9 +25,7 @@ export default function Disclosure({
                   <TailwinDisclosure.Button className='flex w-full justify-between rounded-lg bg-primary px-4 py-2 text-left text-sm font-medium text-white hover:bg-[#1BA54B] focus:outline-none focus-visible:ring focus-visible:ring-[#1BA54B]/75'>
                     <span>{season.name}</span>
                     <ChevronUpIcon
-                      className={`${
-                        open ? 'rotate-180 transform' : ''
-                      } h-5 w-5 text-white`}
+                      className={`${open ? "rotate-180 transform" : ""} h-5 w-5 text-white`}
                     />
                   </TailwinDisclosure.Button>
                   <Transition
@@ -48,9 +43,9 @@ export default function Disclosure({
                 </>
               )}
             </TailwinDisclosure>
-          );
+          )
         })}
       </ul>
     </div>
-  );
+  )
 }

@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react"
 
-import type { Person } from '@/entities/movies';
-import { getPaginatedData, PaginationWrapper } from '@/features/pagination';
+import type { Person } from "@/entities/movies"
+import { getPaginatedData, PaginationWrapper } from "@/features/pagination"
 
-import { ActorCard } from '../ActorCard/ActorCard';
+import { ActorCard } from "../ActorCard/ActorCard"
 
 interface ActorsPaginationProps {
-  persons: Person[];
+  persons: Person[]
 }
 
 export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [limit] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [limit] = useState(6)
 
   return (
     <PaginationWrapper
@@ -22,19 +22,19 @@ export const ActorsPagination = ({ persons }: ActorsPaginationProps) => {
       setCurrentPage={setCurrentPage}
       totalPages={Math.ceil(persons.length / limit)}
     >
-      <div className='flex flex-col gap-8 items-center'>
+      <div className='flex flex-col items-center gap-8'>
         <ActorsList persons={getPaginatedData(persons, limit, currentPage)} />
       </div>
     </PaginationWrapper>
-  );
-};
+  )
+}
 
 const ActorsList = ({ persons }: ActorsPaginationProps) => {
   return (
-    <ul className='grid lg:grid-cols-6 max-lg:grid-row-3 max-lg:grid-cols-3 gap-[24px] lg:h-[200px]'>
+    <ul className='max-lg:grid-row-3 grid gap-[24px] max-lg:grid-cols-3 lg:h-[200px] lg:grid-cols-6'>
       {persons.map((person, index) => {
-        return <ActorCard person={person} key={index} />;
+        return <ActorCard person={person} key={index} />
       })}
     </ul>
-  );
-};
+  )
+}

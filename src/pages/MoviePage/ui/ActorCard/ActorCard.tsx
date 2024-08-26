@@ -1,23 +1,19 @@
-import { useState } from 'react';
-import {
-  Popover,
-  PopoverContent,
-  PopoverHandler
-} from '@material-tailwind/react';
+import { useState } from "react"
+import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react"
 
-import type { Person } from '@/entities/movies';
+import type { Person } from "@/entities/movies"
 
 interface ActorCardProps {
-  person: Person;
+  person: Person
 }
 
 export const ActorCard = ({ person }: ActorCardProps) => {
-  const [openPopover, setOpenPopover] = useState(false);
+  const [openPopover, setOpenPopover] = useState(false)
 
   const triggers = {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false)
-  };
+  }
 
   return (
     <>
@@ -35,15 +31,15 @@ export const ActorCard = ({ person }: ActorCardProps) => {
             <img
               src={person.photo}
               alt='Фотография'
-              className='object-cover lg:w-full h-full rounded-2xl max-lg:w-[100px] max-lg:h-[200px]'
+              className='h-full rounded-2xl object-cover max-lg:h-[200px] max-lg:w-[100px] lg:w-full'
             />
           </PopoverHandler>
           {/* Текст при наведении */}
-          <PopoverContent className='z-50 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden  text-white bg-panel-darker-bg'>
+          <PopoverContent className='text-elipsis z-50 flex max-w-[250px] items-center justify-center overflow-hidden rounded-lg bg-panel-darker-bg text-white'>
             {person.name}
           </PopoverContent>
         </Popover>
       </li>
     </>
-  );
-};
+  )
+}

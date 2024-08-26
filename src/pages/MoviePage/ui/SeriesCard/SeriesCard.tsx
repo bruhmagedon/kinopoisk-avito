@@ -1,24 +1,22 @@
-import type { Episode } from '@/entities/movies/model/MovieApiTypes';
+import type { Episode } from "@/entities/movies/model/MovieApiTypes"
 
 interface SeriesCardProps {
-  series: Episode;
+  series: Episode
 }
 
 export const SeriesCard = ({ series }: SeriesCardProps) => {
-  const { still } = series;
-  const cover = still.url ?? 'https://st.kp.yandex.net/images/no-poster.gif';
+  const { still } = series
+  const cover = still.url ?? "https://st.kp.yandex.net/images/no-poster.gif"
   return (
     <>
-      <li className='w-full cursor-pointer flex '>
+      <li className='flex w-full cursor-pointer'>
         <img
           src={cover}
           alt='Фотография'
-          className='object-cover w-[200px] h-[150px] rounded-2xl'
+          className='h-[150px] w-[200px] rounded-2xl object-cover'
         />
-        <p className='flex-1 flex items-center justify-center text-center'>
-          {series.name}
-        </p>
+        <p className='flex flex-1 items-center justify-center text-center'>{series.name}</p>
       </li>
     </>
-  );
-};
+  )
+}

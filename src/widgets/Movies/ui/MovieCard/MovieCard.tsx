@@ -1,40 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  Popover,
-  PopoverContent,
-  PopoverHandler
-} from '@material-tailwind/react';
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react"
 
-import type { MovieIdApiResponse } from '@/entities/movies';
-import type { SimilarMovie } from '@/entities/movies/model/MovieTypes';
+import type { MovieIdApiResponse } from "@/entities/movies"
+import type { SimilarMovie } from "@/entities/movies/model/MovieTypes"
 
 interface MovieCardProps {
-  movie: MovieIdApiResponse | SimilarMovie;
+  movie: MovieIdApiResponse | SimilarMovie
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
-  const [openPopover, setOpenPopover] = useState(false);
+  const [openPopover, setOpenPopover] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const triggers = {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false)
-  };
+  }
 
   const onNavigate = () => {
-    navigate(`/movie/${movie.id}`);
-  };
+    navigate(`/movie/${movie.id}`)
+  }
 
-  const cover =
-    movie.poster?.url ?? 'https://st.kp.yandex.net/images/no-poster.gif';
+  const cover = movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif"
   return (
     <>
-      <li
-        className='w-full h-[300px] cursor-pointer relative'
-        onClick={onNavigate}
-      >
+      <li className='relative h-[300px] w-full cursor-pointer' onClick={onNavigate}>
         <Popover
           open={openPopover}
           handler={setOpenPopover}
@@ -45,26 +37,22 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
           }}
         >
           <PopoverHandler {...triggers}>
-            <img
-              src={cover}
-              alt='Фотография'
-              className='object-cover w-full h-full rounded-2xl'
-            />
+            <img src={cover} alt='Фотография' className='h-full w-full rounded-2xl object-cover' />
           </PopoverHandler>
-          <PopoverContent className='z-30 rounded-lg max-w-[250px] flex justify-center items-center text-elipsis overflow-hidden text-sm p-2 text-white bg-panel-darker-bg border-gray-700 border-[1px]'>
+          <PopoverContent className='text-elipsis z-30 flex max-w-[250px] items-center justify-center overflow-hidden rounded-lg border-[1px] border-gray-700 bg-panel-darker-bg p-2 text-sm text-white'>
             {movie.name
-              ? movie.name.replace(/\s/g, '') == ''
+              ? movie.name.replace(/\s/g, "") == ""
                 ? movie.alternativeName
                 : movie.name
               : movie.alternativeName || movie.enName}
           </PopoverContent>
         </Popover>
         {movie.rating?.kp ? (
-          <div className='absolute z-30 w-[30px] h-[30px] bg-input-bg border-[1px] border-white text-white font-medium left-2 top-2 rounded-lg flex items-center justify-center'>
+          <div className='absolute left-2 top-2 z-30 flex h-[30px] w-[30px] items-center justify-center rounded-lg border-[1px] border-white bg-input-bg font-medium text-white'>
             {movie.rating.kp?.toFixed(1)}
           </div>
         ) : null}
       </li>
     </>
-  );
-};
+  )
+}

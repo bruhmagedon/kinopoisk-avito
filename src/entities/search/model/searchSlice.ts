@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface SeachState {
   keyword: string;
@@ -8,13 +8,13 @@ interface SeachState {
 }
 
 const initialState: SeachState = {
-  keyword: "",
-  inputTerm: "",
-  searchPanelStatus: false,
+  keyword: '',
+  inputTerm: '',
+  searchPanelStatus: false
 };
 
 export const searchSlice = createSlice({
-  name: "searchSlice",
+  name: 'searchSlice',
   initialState,
   reducers: {
     setSearchTerm: (state, action: PayloadAction<string>) => {
@@ -25,8 +25,8 @@ export const searchSlice = createSlice({
     },
     setSearchPanelStatus: (state, action: PayloadAction<boolean>) => {
       state.searchPanelStatus = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { setSearchTerm, setInputTerm, setSearchPanelStatus } =

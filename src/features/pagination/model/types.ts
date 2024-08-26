@@ -1,5 +1,5 @@
 export interface IPaginationProps {
-  type?: "large" | "small";
+  type?: 'large' | 'small';
   totalPages?: number;
   setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
   handleNextPage?: () => void;

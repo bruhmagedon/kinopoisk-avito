@@ -1,5 +1,6 @@
-import { MovieIdApiResponse } from "@/entities/movies";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+import type { MovieIdApiResponse } from '@/entities/movies';
 
 interface SearchResulListProps {
   data: MovieIdApiResponse[];
@@ -14,7 +15,7 @@ export const SearchResulList = ({ data }: SearchResulListProps) => {
   });
 
   return (
-    <div className="flex flex-col h-full overflow-auto">
+    <div className='flex flex-col h-full overflow-auto'>
       {sortedData.map((movie) => (
         <SearchResulCard movie={movie} key={movie.id} />
       ))}
@@ -29,20 +30,20 @@ export const SearchResulCard = ({ movie }: { movie: MovieIdApiResponse }) => {
   };
 
   const cover =
-    movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
+    movie.poster?.url ?? 'https://st.kp.yandex.net/images/no-poster.gif';
   return (
     <div
-      className="text-white flex p-3 gap-8 hover:bg-input-bg cursor-pointer"
+      className='text-white flex p-3 gap-8 hover:bg-input-bg cursor-pointer'
       onClick={onNavigate}
     >
       <img
         src={cover}
-        alt={"Фотография"}
-        className="object-cover w-[35px] h-[50px] rounded-lg"
+        alt='Фотография'
+        className='object-cover w-[35px] h-[50px] rounded-lg'
       />
-      <div className="flex-1">
-        <p className="font-medium">{movie.name}</p>
-        <p className="text-sm text-gray-500">{movie.alternativeName}</p>
+      <div className='flex-1'>
+        <p className='font-medium'>{movie.name}</p>
+        <p className='text-sm text-gray-500'>{movie.alternativeName}</p>
       </div>
     </div>
   );

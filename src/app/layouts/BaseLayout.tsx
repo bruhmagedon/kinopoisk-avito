@@ -1,11 +1,15 @@
-import { Header } from "@/widgets/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+
+import { LeftSidebar } from '@/components/LeftSidebar/LeftSidebar';
+import { RightSidebar } from '@/components/RightSidebar/RightSidebar';
 
 const BaseLayout = () => {
   return (
-    <div className="h-dvh relative mx-auto max-w-[1160px] py-[50px] bg-darker-bg">
-      <Header />
+    <div className='bg-background min-h-screen flex '>
+      {/* <Header /> */}
+      <LeftSidebar />
       <Outlet />
+      <RightSidebar />
     </div>
   );
 };

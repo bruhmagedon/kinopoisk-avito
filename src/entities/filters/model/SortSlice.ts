@@ -1,18 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-type SortType = "Отсутствует" | "По названию" | "По рейтингу" | "По году";
+type SortType = 'Отсутствует' | 'По названию' | 'По рейтингу' | 'По году';
 interface SortState {
   sort: string;
   viewCount: string;
 }
 
 const initialState: SortState = {
-  sort: "Отсутствует",
-  viewCount: "10",
+  sort: 'Отсутствует',
+  viewCount: '10'
 };
 
 export const sortSlice = createSlice({
-  name: "sort",
+  name: 'sort',
   initialState,
   reducers: {
     setSort: (
@@ -27,8 +28,8 @@ export const sortSlice = createSlice({
     resetSort: (state) => {
       state.sort = initialState.sort;
       state.viewCount = initialState.viewCount;
-    },
-  },
+    }
+  }
 });
 
 export const { setSort, resetSort } = sortSlice.actions;

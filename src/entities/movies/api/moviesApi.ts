@@ -1,43 +1,44 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-  MoviesApiResponse,
-  MovieParamsType,
-  PostersApiResponse,
-  SeriesApiResponse,
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+import type {
   MovieId,
-  ReviewParamsType,
+  MovieParamsType,
+  MoviesApiResponse,
+  PostersApiResponse,
   ReviewApiResponse,
-} from "../model/MovieApiTypes";
-import { MovieIdApiResponse } from "../model/MovieTypes";
+  ReviewParamsType,
+  SeriesApiResponse
+} from '../model/MovieApiTypes';
+import type { MovieIdApiResponse } from '../model/MovieTypes';
 
 // TODO Повторяется, вынести в константу в отдельный файл
 const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
 
 export const movieApi = createApi({
-  reducerPath: "movieApi",
+  reducerPath: 'movieApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.kinopoisk.dev/v1.4/",
+    baseUrl: 'https://api.kinopoisk.dev/v1.4/',
     prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
-      headers.set("X-API-KEY", X_API_KEY);
+      headers.set('Content-Type', 'application/json');
+      headers.set('X-API-KEY', X_API_KEY);
       return headers;
-    },
+    }
   }),
   endpoints: (builder) => ({
     fetchMovies: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
         const { query, sortField, ...otherParams } = params;
         const filteredOtherParams = Object.entries(otherParams)
-          .filter(([_, value]) => value !== "")
+          .filter(([_, value]) => value !== '')
           .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
-        if (query != "") {
+        if (query != '') {
           return {
             url: `movie/search`,
             params: {
               query,
-              ...filteredOtherParams,
-            },
+              ...filteredOtherParams
+            }
           };
         } else {
           if (sortField) {
@@ -46,37 +47,37 @@ export const movieApi = createApi({
               params: {
                 sortField,
                 sortType: 1,
-                ...filteredOtherParams,
-              },
+                ...filteredOtherParams
+              }
             };
           } else {
             return {
               url: `movie`,
               params: {
-                ...filteredOtherParams,
-              },
+                ...filteredOtherParams
+              }
             };
           }
         }
-      },
+      }
     }),
     fetchMovieById: builder.query<MovieIdApiResponse, MovieId>({
       query: (params) => {
         const { id } = params;
         return {
-          url: `movie/${id}`,
+          url: `movie/${id}`
         };
-      },
+      }
     }),
     fetchPosters: builder.query<PostersApiResponse, MovieId>({
       query: (params) => {
         return {
           url: `image`,
           params: {
-            ...params,
-          },
+            ...params
+          }
         };
-      },
+      }
     }),
     fetchSeasonsAndSeries: builder.query<SeriesApiResponse, MovieId>({
       query: (params) => {
@@ -84,32 +85,32 @@ export const movieApi = createApi({
         return {
           url: `season`,
           params: {
-            movieId,
-          },
+            movieId
+          }
         };
-      },
+      }
     }),
     fetchReview: builder.query<ReviewApiResponse, ReviewParamsType>({
       query: (params) => {
         return {
           url: `review`,
           params: {
-            ...params,
-          },
+            ...params
+          }
         };
-      },
+      }
     }),
     fetchSearch: builder.query<MoviesApiResponse, MovieParamsType>({
       query: (params) => {
         return {
           url: `movie/search`,
           params: {
-            ...params,
-          },
+            ...params
+          }
         };
-      },
-    }),
-  }),
+      }
+    })
+  })
 });
 
 export const {
@@ -118,5 +119,5 @@ export const {
   useFetchPostersQuery,
   useFetchSeasonsAndSeriesQuery,
   useFetchReviewQuery,
-  useFetchSearchQuery,
+  useFetchSearchQuery
 } = movieApi;

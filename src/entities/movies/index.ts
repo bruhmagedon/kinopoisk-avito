@@ -1,32 +1,32 @@
 import {
-  useFetchMoviesQuery,
   movieApi,
   useFetchMovieByIdQuery,
+  useFetchMoviesQuery,
   useFetchPostersQuery,
-  useFetchSeasonsAndSeriesQuery,
   useFetchReviewQuery,
   useFetchSearchQuery,
-} from "./api/moviesApi";
+  useFetchSeasonsAndSeriesQuery
+} from './api/moviesApi';
 import type {
+  MovieId,
   MoviesApiResponse,
   PostersApiResponse,
-  SeriesApiResponse,
-  MovieId,
-} from "./model/MovieApiTypes";
-import type { MovieIdApiResponse, Person } from "./model/MovieTypes";
+  SeriesApiResponse
+} from './model/MovieApiTypes';
+import type { MovieIdApiResponse, Person } from './model/MovieTypes';
 
 export {
-  PostersApiResponse,
+  movieApi,
+  MovieId,
   MovieIdApiResponse,
   MoviesApiResponse,
-  useFetchMoviesQuery,
-  movieApi,
-  useFetchMovieByIdQuery,
-  useFetchPostersQuery,
   Person,
+  PostersApiResponse,
   SeriesApiResponse,
-  useFetchSeasonsAndSeriesQuery,
-  MovieId,
+  useFetchMovieByIdQuery,
+  useFetchMoviesQuery,
+  useFetchPostersQuery,
   useFetchReviewQuery,
   useFetchSearchQuery,
+  useFetchSeasonsAndSeriesQuery
 };

@@ -1,5 +1,3 @@
-import { ReviewPagination } from "../ReviewPagination/ReviewPagination";
-
 interface ReviewListProps {
   movieId: string;
 }

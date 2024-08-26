@@ -1,10 +1,9 @@
-import { usePagination } from "../hooks/usePagination";
-import { IPaginationProps } from "../model/types";
-import { PaginationButtons } from "./PaginationButtons";
+import { usePagination } from '../hooks/usePagination';
+import type { IPaginationProps } from '../model/types';
 
 interface PaginationProps {
   children: React.ReactNode;
-  type: "large" | "small";
+  type: 'large' | 'small';
 }
 
 const PaginationWrapper = ({
@@ -15,7 +14,7 @@ const PaginationWrapper = ({
   return (
     <>
       {children}
-      <PaginationButtons {...paginationProps} {...ipaginationProps} />
+      {/* <PaginationButtons {...paginationProps} {...ipaginationProps} /> */}
     </>
   );
 };

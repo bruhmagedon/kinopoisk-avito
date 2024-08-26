@@ -6,7 +6,7 @@ interface usePaginationProps {
 
 export const usePagination = ({
   setCurrentPage,
-  totalPages,
+  totalPages
 }: usePaginationProps) => {
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
@@ -29,6 +29,6 @@ export const usePagination = ({
     handlePrevPage,
     handlePageClick,
     handleStartPage,
-    handleEndPage,
+    handleEndPage
   };
 };

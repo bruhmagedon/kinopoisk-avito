@@ -1,17 +1,18 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { FilterApiParams, FilterType } from "../model/types";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+import type { FilterApiParams, FilterType } from '../model/types';
 
 const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
 
 export const filterApi = createApi({
-  reducerPath: "filterApi",
+  reducerPath: 'filterApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.kinopoisk.dev/v1/",
+    baseUrl: 'https://api.kinopoisk.dev/v1/',
     prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
-      headers.set("X-API-KEY", X_API_KEY);
+      headers.set('Content-Type', 'application/json');
+      headers.set('X-API-KEY', X_API_KEY);
       return headers;
-    },
+    }
   }),
   endpoints: (builder) => ({
     fetchFilters: builder.query<FilterType[], FilterApiParams>({
@@ -20,12 +21,12 @@ export const filterApi = createApi({
         return {
           url: `movie/possible-values-by-field`,
           params: {
-            field,
-          },
+            field
+          }
         };
-      },
-    }),
-  }),
+      }
+    })
+  })
 });
 
 export const { useFetchFiltersQuery } = filterApi;

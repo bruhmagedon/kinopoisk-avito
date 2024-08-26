@@ -1,5 +1,5 @@
-import { SkeletonType, SkeletonDirection } from "../interfaces";
-import { Skeleton } from "../ui/Skeleton";
+import type { SkeletonDirection, SkeletonType } from '../interfaces';
+import { Skeleton } from '../ui/Skeleton';
 
 interface ChildProps {
   isLoading: boolean;

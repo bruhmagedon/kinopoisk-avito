@@ -1,13 +1,13 @@
-import { FiltersPanel } from "./ui/FiltersPanel";
-import { SortPanel } from "./ui/SortPanel";
-import { SelectFilter } from "./ui/SelectFilter";
-import { LIST_VIEW_VARIANTS, SORT_DATA, SORT_MAP } from "./model/constants";
+import { LIST_VIEW_VARIANTS, SORT_DATA, SORT_MAP } from './model/constants';
+import { FiltersPanel } from './ui/FiltersPanel';
+import { SelectFilter } from './ui/SelectFilter';
+import { SortPanel } from './ui/SortPanel';
 
 export {
   FiltersPanel,
-  SelectFilter,
-  SortPanel,
   LIST_VIEW_VARIANTS,
+  SelectFilter,
   SORT_DATA,
   SORT_MAP,
+  SortPanel
 };

@@ -1,14 +1,15 @@
-import { SelectedFilters } from "@/entities/filters/model/FiltersSlice";
-import { MovieIdApiResponse } from "./MovieTypes";
+import type { SelectedFilters } from '@/entities/filters/model/FiltersSlice';
+
+import type { MovieIdApiResponse } from './MovieTypes';
 
 export interface MoviesApiResponse {
   docs: MovieIdApiResponse[];
 }
 
-export type MovieId = {
+export interface MovieId {
   movieId?: string;
   id?: string;
-};
+}
 
 interface IQueryParams extends SelectedFilters {
   limit: number;

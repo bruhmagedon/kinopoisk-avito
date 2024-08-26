@@ -1,33 +1,33 @@
-import { useFetchFiltersQuery } from "@/entities/filters";
-import { FilterType } from "@/entities/filters/model/types";
+import _ from 'lodash';
 
-import _ from "lodash";
+import { useFetchFiltersQuery } from '@/entities/filters';
+import type { FilterType } from '@/entities/filters/model/types';
 
 export type useFiltersReturnType = ReturnType<typeof useFilters>;
 
 export const useFilters = () => {
   const basicFilter: FilterType = {
-    name: "Нет",
-    slug: "",
+    name: 'Нет',
+    slug: ''
   };
 
   const { data: genresData } = useFetchFiltersQuery({
-    field: "genres.name",
+    field: 'genres.name'
   });
   const { data: countriesData } = useFetchFiltersQuery({
-    field: "countries.name",
+    field: 'countries.name'
   });
   const { data: statusData } = useFetchFiltersQuery({
-    field: "status",
+    field: 'status'
   });
   const { data: typesData } = useFetchFiltersQuery({
-    field: "type",
+    field: 'type'
   });
 
   const yearsData: FilterType[] = _.range(1890, 2030).map((year) => {
     return {
       name: year.toString(),
-      slug: year.toString(),
+      slug: year.toString()
     };
   });
 
@@ -41,12 +41,12 @@ export const useFilters = () => {
         countries: [basicFilter, ...countriesData],
         status: [basicFilter, ...statusData],
         type: [basicFilter, ...typesData],
-        year: [basicFilter, ...yearsData],
-      },
+        year: [basicFilter, ...yearsData]
+      }
     };
   }
   return {
     isLoading,
-    data: null,
+    data: null
   };
 };

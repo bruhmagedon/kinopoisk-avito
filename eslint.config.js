@@ -6,7 +6,7 @@ export default eslint(
     jsx: true,
     jsxA11y: true,
     react: true,
-    stylistic: true
+    stylistic: false
   },
   {
     rules: {

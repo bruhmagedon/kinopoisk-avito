@@ -5,9 +5,10 @@ import type { SidebarItemType } from "./SidebarItemsList";
 interface SidebarItemProps {
   className?: string;
   item: SidebarItemType;
+  collapsed?: boolean;
 }
 
-export const SidebarItem = ({ className, item }: SidebarItemProps) => {
+export const SidebarItem = ({ className, item, collapsed }: SidebarItemProps) => {
   return (
     <div
       className={cn(
@@ -16,7 +17,7 @@ export const SidebarItem = ({ className, item }: SidebarItemProps) => {
       )}
     >
       {item.Icon}
-      <a>{item.text}</a>
+      {collapsed && <a>{item.text}</a>}
     </div>
   );
 };

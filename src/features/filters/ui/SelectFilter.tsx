@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useState } from "react"
-import { Listbox, Transition } from "@headlessui/react"
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
-import _ from "lodash"
+import { Fragment, useEffect, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import _ from "lodash";
 
-import { useAppDispatch, useAppSelector } from "@/app/store/store"
-import type { FilterApiResponse } from "@/entities/filters"
-import { setFilter } from "@/entities/filters"
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import type { FilterApiResponse } from "@/entities/filters";
+import { setFilter } from "@/entities/filters";
 
 enum FILTER_TYPES {
   genres = "genres.name",
@@ -16,22 +16,22 @@ enum FILTER_TYPES {
 }
 
 interface SelectFilterProps {
-  filterData: FilterApiResponse
-  type?: "genres.name" | "countries.name" | "status" | "type" | "year"
-  initialValue?: string
+  filterData: FilterApiResponse;
+  type?: "genres.name" | "countries.name" | "status" | "type" | "year";
+  initialValue?: string;
 }
 export const SelectFilter = ({ filterData, type, initialValue = "Нет" }: SelectFilterProps) => {
   const [selected, setSelected] = useState<string>(() => {
-    const storedValue = getFilterFromLocalStorage(type)
-    return storedValue || initialValue || filterData[0].name
-  })
+    const storedValue = getFilterFromLocalStorage(type);
+    return storedValue || initialValue || filterData[0].name;
+  });
 
-  const dispatch = useAppDispatch()
-  const filterValue = useAppSelector((state) => state.filters.filters[type])
+  const dispatch = useAppDispatch();
+  const filterValue = useAppSelector((state) => state.filters.filters[type]);
 
   useEffect(() => {
-    setSelected(filterValue || initialValue)
-  }, [filterValue, initialValue])
+    setSelected(filterValue || initialValue);
+  }, [filterValue, initialValue]);
 
   useEffect(() => {
     switch (type) {
@@ -41,8 +41,8 @@ export const SelectFilter = ({ filterData, type, initialValue = "Нет" }: Sele
             filterName: "genres.name",
             filterValue: selected.toLowerCase()
           })
-        )
-        break
+        );
+        break;
       }
       case FILTER_TYPES.countries: {
         dispatch(
@@ -50,8 +50,8 @@ export const SelectFilter = ({ filterData, type, initialValue = "Нет" }: Sele
             filterName: "countries.name",
             filterValue: selected
           })
-        )
-        break
+        );
+        break;
       }
       case FILTER_TYPES.status: {
         dispatch(
@@ -59,23 +59,23 @@ export const SelectFilter = ({ filterData, type, initialValue = "Нет" }: Sele
             filterName: "status",
             filterValue: selected.toLowerCase()
           })
-        )
-        break
+        );
+        break;
       }
       case FILTER_TYPES.type: {
-        dispatch(setFilter({ filterName: "type", filterValue: selected.toLowerCase() }))
-        break
+        dispatch(setFilter({ filterName: "type", filterValue: selected.toLowerCase() }));
+        break;
       }
       case FILTER_TYPES.year: {
-        dispatch(setFilter({ filterName: "year", filterValue: selected.toLowerCase() }))
-        break
+        dispatch(setFilter({ filterName: "year", filterValue: selected.toLowerCase() }));
+        break;
       }
       default: {
-        break
+        break;
       }
     }
-    saveFilterToLocalStorage(type, selected)
-  }, [selected])
+    saveFilterToLocalStorage(type, selected);
+  }, [selected]);
 
   return (
     <div className='w-full'>
@@ -125,13 +125,13 @@ export const SelectFilter = ({ filterData, type, initialValue = "Нет" }: Sele
         </div>
       </Listbox>
     </div>
-  )
-}
+  );
+};
 
 const saveFilterToLocalStorage = (filterName: string, filterValue: string) => {
-  localStorage.setItem(filterName, filterValue)
-}
+  localStorage.setItem(filterName, filterValue);
+};
 
 const getFilterFromLocalStorage = (filterName: string) => {
-  return localStorage.getItem(filterName)
-}
+  return localStorage.getItem(filterName);
+};

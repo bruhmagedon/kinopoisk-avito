@@ -1,17 +1,17 @@
-import { Disclosure as TailwinDisclosure, Transition } from "@headlessui/react"
-import { ChevronUpIcon } from "@heroicons/react/20/solid"
+import { Disclosure as TailwinDisclosure, Transition } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/20/solid";
 
-import type { SeriesApiResponse } from "@/entities/movies"
-import { SeriesPagination } from "@/pages/MoviePage/ui/SeriesPagination/SeriesPagination"
+import type { SeriesApiResponse } from "@/entities/movies";
+import { SeriesPagination } from "@/pages/MoviePage/ui/SeriesPagination/SeriesPagination";
 
 interface DisclosureProps {
-  seasonsData: SeriesApiResponse
-  isLoading: boolean
+  seasonsData: SeriesApiResponse;
+  isLoading: boolean;
 }
 
 export default function Disclosure({ seasonsData, isLoading }: DisclosureProps) {
   if (isLoading) {
-    return <div>Загрузка</div>
+    return <div>Загрузка</div>;
   }
 
   return (
@@ -43,9 +43,9 @@ export default function Disclosure({ seasonsData, isLoading }: DisclosureProps) 
                 </>
               )}
             </TailwinDisclosure>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }

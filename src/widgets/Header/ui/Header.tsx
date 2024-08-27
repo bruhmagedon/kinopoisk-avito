@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-import { SearchPanel } from "@/features/search"
-import { Button } from "@/shared"
+import { SearchPanel } from "@/features/search";
+import { Button } from "@/shared";
 
 export const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onNavigate = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <header className='rounded-lg bg-panel-darker-bg'>
@@ -22,5 +22,5 @@ export const Header = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};

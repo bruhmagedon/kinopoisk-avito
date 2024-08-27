@@ -1,51 +1,51 @@
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/app/store/store"
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import {
   useFetchMovieByIdQuery,
   useFetchPostersQuery,
   useFetchSeasonsAndSeriesQuery
-} from "@/entities/movies"
-import { setInputTerm, setSearchPanelStatus } from "@/entities/search"
-import { Carousel, Disclosure } from "@/shared"
+} from "@/entities/movies";
+import { setInputTerm, setSearchPanelStatus } from "@/entities/search";
+import { Carousel, Disclosure } from "@/shared";
 
-import { ActorsPagination } from "./ActorsPagination/ActorsPagination"
-import { ReviewPagination } from "./ReviewPagination/ReviewPagination"
+import { ActorsPagination } from "./ActorsPagination/ActorsPagination";
+import { ReviewPagination } from "./ReviewPagination/ReviewPagination";
 
 export const MoviePage = () => {
-  const isOpen = useAppSelector((state) => state.search.searchPanelStatus)
-  const dispatch = useAppDispatch()
+  const isOpen = useAppSelector((state) => state.search.searchPanelStatus);
+  const dispatch = useAppDispatch();
 
-  const { id } = useParams()
+  const { id } = useParams();
 
   useEffect(() => {
     window.scrollTo({
       top: 0
-    })
-  }, [id])
+    });
+  }, [id]);
 
   useEffect(() => {
     if (isOpen) {
-      dispatch(setSearchPanelStatus(!isOpen))
-      dispatch(setInputTerm(""))
+      dispatch(setSearchPanelStatus(!isOpen));
+      dispatch(setInputTerm(""));
     }
-  }, [])
+  }, []);
 
   const { data: movieData, isLoading: movieLoading } = useFetchMovieByIdQuery({
     id
-  })
-  const { data: postersData, isLoading: postersLoading } = useFetchPostersQuery({ movieId: id })
+  });
+  const { data: postersData, isLoading: postersLoading } = useFetchPostersQuery({ movieId: id });
   const { data: seasonsData, isLoading: seasonsLoading } = useFetchSeasonsAndSeriesQuery({
     movieId: id
-  })
+  });
 
   if (movieLoading) {
     return (
       <div className='flex h-full w-full items-center justify-center'>
         <h1 className='text-2xl font-medium text-white'>Загрузка...</h1>
       </div>
-    )
+    );
   }
 
   return (
@@ -115,5 +115,5 @@ export const MoviePage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

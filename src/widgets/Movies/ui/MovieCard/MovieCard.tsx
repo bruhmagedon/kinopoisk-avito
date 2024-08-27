@@ -1,29 +1,29 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
 
-import type { MovieIdApiResponse } from "@/entities/movies"
-import type { SimilarMovie } from "@/entities/movies/model/MovieTypes"
+import type { MovieIdApiResponse } from "@/entities/movies";
+import type { SimilarMovie } from "@/entities/movies/model/MovieTypes";
 
 interface MovieCardProps {
-  movie: MovieIdApiResponse | SimilarMovie
+  movie: MovieIdApiResponse | SimilarMovie;
 }
 
 export const MovieCard = ({ movie }: MovieCardProps) => {
-  const [openPopover, setOpenPopover] = useState(false)
+  const [openPopover, setOpenPopover] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const triggers = {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false)
-  }
+  };
 
   const onNavigate = () => {
-    navigate(`/movie/${movie.id}`)
-  }
+    navigate(`/movie/${movie.id}`);
+  };
 
-  const cover = movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif"
+  const cover = movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
   return (
     <>
       <li className='relative h-[300px] w-full cursor-pointer' onClick={onNavigate}>
@@ -54,5 +54,5 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
         ) : null}
       </li>
     </>
-  )
-}
+  );
+};

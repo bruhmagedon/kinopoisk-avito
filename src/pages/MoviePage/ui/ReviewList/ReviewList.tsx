@@ -1,7 +1,7 @@
 interface ReviewListProps {
-  movieId: string
+  movieId: string;
 }
 
 export const ReviewList = ({ movieId }: ReviewListProps) => {
-  return <></>
-}
+  return <></>;
+};

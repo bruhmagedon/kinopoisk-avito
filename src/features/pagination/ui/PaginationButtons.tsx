@@ -1,8 +1,8 @@
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
-import { Button } from "../../../shared/ui/Button"
-import { usePaginationRange } from "../hooks/usePaginationRange"
-import type { IPaginationProps } from "../model/types"
+import { Button } from "../../../shared/ui/Button";
+import { usePaginationRange } from "../hooks/usePaginationRange";
+import type { IPaginationProps } from "../model/types";
 
 export const PaginationButtons = ({
   totalPages,
@@ -16,11 +16,13 @@ export const PaginationButtons = ({
   siblings,
   type
 }: IPaginationProps) => {
-  const activePageStyles = "font-medium bg-primary cursor-auto"
-  const array = usePaginationRange(totalPages, currentPage, limit, siblings)
-  const textStatus = type === "small" ? "text-lg" : "text-2xl"
+  const activePageStyles = "font-medium bg-primary cursor-auto";
+  const array = usePaginationRange(totalPages, currentPage, limit, siblings);
+  const textStatus = type === "small" ? "text-lg" : "text-2xl";
   const sizeStatus =
-    type === "small" ? " w-[30px] h-[30px] " : " max-sm:w-[30px] max-sm:h-[30px] w-[45px] h-[45px] "
+    type === "small"
+      ? " w-[30px] h-[30px] "
+      : " max-sm:w-[30px] max-sm:h-[30px] w-[45px] h-[45px] ";
 
   return (
     <>
@@ -43,7 +45,7 @@ export const PaginationButtons = ({
         </Button>
         <div className='flex items-center justify-center'>
           {array.map((index) => {
-            const activePage = currentPage === (index as number)
+            const activePage = currentPage === (index as number);
             return (
               <button
                 onClick={() => handlePageClick(index as number)}
@@ -55,7 +57,7 @@ export const PaginationButtons = ({
               >
                 {index}
               </button>
-            )
+            );
           })}
         </div>
         <Button
@@ -74,5 +76,5 @@ export const PaginationButtons = ({
         </Button>
       </div>
     </>
-  )
-}
+  );
+};

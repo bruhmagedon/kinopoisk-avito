@@ -1,40 +1,40 @@
-import { Fragment, useEffect, useState } from "react"
-import { Listbox, Transition } from "@headlessui/react"
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
-import _ from "lodash"
+import { Fragment, useEffect, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import _ from "lodash";
 
-import { useAppDispatch } from "@/app/store/store"
-import { setSort } from "@/entities/filters"
+import { useAppDispatch } from "@/app/store/store";
+import { setSort } from "@/entities/filters";
 
 interface SortTypes {
-  name: string
+  name: string;
 }
 
 interface SelectProps {
-  sortData: SortTypes[]
-  type?: "sort" | "viewCount"
-  initialValue?: string
+  sortData: SortTypes[];
+  type?: "sort" | "viewCount";
+  initialValue?: string;
 }
 
 export const Select = ({ sortData, type }: SelectProps) => {
-  const [selected, setSelected] = useState(sortData[0].name)
-  const dispatch = useAppDispatch()
+  const [selected, setSelected] = useState(sortData[0].name);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     switch (type) {
       case "sort": {
-        dispatch(setSort({ key: "sort", value: selected }))
-        break
+        dispatch(setSort({ key: "sort", value: selected }));
+        break;
       }
       case "viewCount": {
-        dispatch(setSort({ key: "viewCount", value: selected }))
-        break
+        dispatch(setSort({ key: "viewCount", value: selected }));
+        break;
       }
       default: {
-        break
+        break;
       }
     }
-  }, [selected])
+  }, [selected]);
 
   return (
     <div className='w-full'>
@@ -84,5 +84,5 @@ export const Select = ({ sortData, type }: SelectProps) => {
         </div>
       </Listbox>
     </div>
-  )
-}
+  );
+};

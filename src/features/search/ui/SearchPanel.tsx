@@ -1,46 +1,46 @@
-import { useEffect, useRef } from "react"
-import { Search } from "lucide-react"
+import { useEffect, useRef } from "react";
+import { Search } from "lucide-react";
 
-import { useAppDispatch, useAppSelector } from "@/app/store/store"
-import { setInputTerm, setSearchPanelStatus, setSearchTerm } from "@/entities/search"
-import { Button } from "@/shared"
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { setInputTerm, setSearchPanelStatus, setSearchTerm } from "@/entities/search";
+import { Button } from "@/shared";
 
-import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage"
+import { saveSearchTermToLocalStorage } from "../utils/saveSearchTermToLocalStorage";
 
-import { SearchOutput } from "./SearchOutput"
+import { SearchOutput } from "./SearchOutput";
 
 export const SearchPanel = () => {
-  const term = useAppSelector((state) => state.search.inputTerm)
-  const isOpen = useAppSelector((state) => state.search.searchPanelStatus)
-  const searchPanelRef = useRef<HTMLDivElement>(null)
+  const term = useAppSelector((state) => state.search.inputTerm);
+  const isOpen = useAppSelector((state) => state.search.searchPanelStatus);
+  const searchPanelRef = useRef<HTMLDivElement>(null);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (searchPanelRef.current && !searchPanelRef.current.contains(event.target as Node)) {
-      dispatch(setSearchPanelStatus(false))
+      dispatch(setSearchPanelStatus(false));
     }
-  }
+  };
 
   const handleFormClick = () => {
-    dispatch(setSearchPanelStatus(!isOpen))
-  }
+    dispatch(setSearchPanelStatus(!isOpen));
+  };
 
   const onDispatchTerm = () => {
-    dispatch(setSearchTerm(term))
-    saveSearchTermToLocalStorage(term)
-  }
+    dispatch(setSearchTerm(term));
+    saveSearchTermToLocalStorage(term);
+  };
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setInputTerm(e.currentTarget.value))
-  }
+    dispatch(setInputTerm(e.currentTarget.value));
+  };
 
   return (
     <div className='relative mx-auto w-[310px] max-lg:w-auto max-lg:flex-1' ref={searchPanelRef}>
@@ -69,5 +69,5 @@ export const SearchPanel = () => {
       {/* Посмотреть потом как можно лучше всего реализовать форму */}
       {isOpen && <SearchOutput keyword={term} />}
     </div>
-  )
-}
+  );
+};

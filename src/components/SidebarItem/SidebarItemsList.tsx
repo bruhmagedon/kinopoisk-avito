@@ -1,9 +1,9 @@
-import { CircleUserRound, Sparkle, TvMinimal } from "lucide-react"
+import { CircleUserRound, Sparkle, TvMinimal } from "lucide-react";
 
 export interface SidebarItemType {
-  path: string
-  text: string
-  Icon: React.ReactNode
+  path: string;
+  text: string;
+  Icon: React.ReactNode;
 }
 
 export const SidebarItemsList: SidebarItemType[] = [
@@ -22,4 +22,4 @@ export const SidebarItemsList: SidebarItemType[] = [
     text: "Профиль",
     Icon: <CircleUserRound />
   }
-]
+];

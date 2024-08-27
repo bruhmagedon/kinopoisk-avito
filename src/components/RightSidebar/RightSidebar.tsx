@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-import { Input } from "../ui/input"
+import { Input } from "../ui/input";
 
 interface SidebarProps {
-  className?: string
+  className?: string;
 }
 
 export const RightSidebar = ({ className }: SidebarProps) => {
@@ -12,5 +12,5 @@ export const RightSidebar = ({ className }: SidebarProps) => {
       <Input placeholder='Поиск' />
       <div className='w-full flex-1 rounded-md bg-primary'></div>
     </aside>
-  )
-}
+  );
+};

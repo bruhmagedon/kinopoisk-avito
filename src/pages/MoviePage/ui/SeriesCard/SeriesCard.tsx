@@ -1,12 +1,12 @@
-import type { Episode } from "@/entities/movies/model/MovieApiTypes"
+import type { Episode } from "@/entities/movies/model/MovieApiTypes";
 
 interface SeriesCardProps {
-  series: Episode
+  series: Episode;
 }
 
 export const SeriesCard = ({ series }: SeriesCardProps) => {
-  const { still } = series
-  const cover = still.url ?? "https://st.kp.yandex.net/images/no-poster.gif"
+  const { still } = series;
+  const cover = still.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
   return (
     <>
       <li className='flex w-full cursor-pointer'>
@@ -18,5 +18,5 @@ export const SeriesCard = ({ series }: SeriesCardProps) => {
         <p className='flex flex-1 items-center justify-center text-center'>{series.name}</p>
       </li>
     </>
-  )
-}
+  );
+};

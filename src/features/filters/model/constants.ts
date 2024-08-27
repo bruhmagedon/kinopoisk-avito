@@ -11,7 +11,7 @@ export const SORT_DATA = [
   {
     name: "По рейтингу"
   }
-]
+];
 
 export const LIST_VIEW_VARIANTS = [
   {
@@ -29,11 +29,11 @@ export const LIST_VIEW_VARIANTS = [
   {
     name: "24"
   }
-]
+];
 
 export const SORT_MAP = {
   Отсутствует: "",
   "По названию": "name",
   "По году": "year",
   "По рейтингу": "rating.kp"
-}
+};

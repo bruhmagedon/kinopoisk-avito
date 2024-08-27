@@ -1,18 +1,20 @@
-import { MoviePanel } from "./MoviePanel/MoviePanel"
+import { MoviesCategoryTabs } from "@/components/MoviesCategoryTabs/MoviesCategoryTabs";
+import { Tabs } from "@/components/ui/tabs";
 
 export const MainPage = () => {
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // }, []);
-
   return (
     <div className='flex-1 p-6'>
-      <div className='gap gap-4'>
-        {/* <Filters /> */}
-        <MoviePanel />
-      </div>
+      <Tabs defaultValue='account' className='w-[400px]'>
+        {/* Табы для категорий */}
+        <MoviesCategoryTabs />
+
+        {/* Карусель самых актуальных аниме категории */}
+        {/* <MoviesCarousel /> */}
+
+        {/* Остальные аниме категории с пагинацией (с кнопкой see all,
+      что редиректит в другой раздел с заранее установленнными фильтрами) */}
+        {/* <MoviePanel /> */}
+      </Tabs>
     </div>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import { FiltersPanel, SortPanel } from "@/features/filters"
+import { FiltersPanel, SortPanel } from "@/features/filters";
 
 export const Filters = () => {
   return (
@@ -6,5 +6,5 @@ export const Filters = () => {
       <SortPanel />
       <FiltersPanel />
     </div>
-  )
-}
+  );
+};

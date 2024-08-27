@@ -1,3 +1,7 @@
-import searchSlice, { setInputTerm, setSearchPanelStatus, setSearchTerm } from "./model/searchSlice"
+import searchSlice, {
+  setInputTerm,
+  setSearchPanelStatus,
+  setSearchTerm
+} from "./model/searchSlice";
 
-export { searchSlice, setInputTerm, setSearchPanelStatus, setSearchTerm }
+export { searchSlice, setInputTerm, setSearchPanelStatus, setSearchTerm };

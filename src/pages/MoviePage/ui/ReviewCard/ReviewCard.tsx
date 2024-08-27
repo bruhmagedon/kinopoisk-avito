@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import type { ReviewData } from "@/entities/movies/model/MovieApiTypes"
+import type { ReviewData } from "@/entities/movies/model/MovieApiTypes";
 
 interface ReviewCardProps {
-  review: ReviewData
+  review: ReviewData;
 }
 
 export const ReviewCard = ({ review }: ReviewCardProps) => {
-  const [formatedDate, setFormatedDate] = useState(null)
+  const [formatedDate, setFormatedDate] = useState(null);
   useEffect(() => {
-    const date = new Date(review.date)
+    const date = new Date(review.date);
     setFormatedDate(
       `${date.getDate()}.${(date.getMonth() + 1)
         .toString()
@@ -17,8 +17,8 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
         .getHours()
         .toString()
         .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`
-    )
-  }, [review])
+    );
+  }, [review]);
   return (
     <>
       <li className='flex cursor-pointer flex-col gap-3 rounded-lg bg-panel-darker-bg p-3'>
@@ -34,5 +34,5 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
         </section>
       </li>
     </>
-  )
-}
+  );
+};

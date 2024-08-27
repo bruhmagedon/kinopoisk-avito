@@ -3,11 +3,11 @@ module.exports = {
   printWidth: 100,
   singleQuote: false,
   jsxSingleQuote: true,
-  trailingComma: 'none',
-  semi: false,
+  trailingComma: "none",
+  semi: true,
   tabWidth: 2,
   useTabs: false,
-  endOfLine: 'lf',
-  arrowParens: 'always',
-  plugins: ['prettier-plugin-tailwindcss']
+  endOfLine: "lf",
+  arrowParens: "always",
+  plugins: ["prettier-plugin-tailwindcss"]
 };

@@ -1,4 +1,4 @@
-import type { MovieIdApiResponseDoc } from "@/entities/movies/model/MovieTypes"
+import type { MovieIdApiResponseDoc } from "@/entities/movies/model/MovieTypes";
 
 export const fetchMovieQuery: MovieIdApiResponseDoc = {
   docs: [
@@ -574,4 +574,4 @@ export const fetchMovieQuery: MovieIdApiResponseDoc = {
       ticketsOnSale: false
     }
   ]
-}
+};

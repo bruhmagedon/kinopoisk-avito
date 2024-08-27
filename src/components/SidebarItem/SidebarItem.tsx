@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-import type { SidebarItemType } from "./SidebarItemsList"
+import type { SidebarItemType } from "./SidebarItemsList";
 
 interface SidebarItemProps {
-  className?: string
-  item: SidebarItemType
+  className?: string;
+  item: SidebarItemType;
 }
 
 export const SidebarItem = ({ className, item }: SidebarItemProps) => {
@@ -18,5 +18,5 @@ export const SidebarItem = ({ className, item }: SidebarItemProps) => {
       {item.Icon}
       <a>{item.text}</a>
     </div>
-  )
-}
+  );
+};

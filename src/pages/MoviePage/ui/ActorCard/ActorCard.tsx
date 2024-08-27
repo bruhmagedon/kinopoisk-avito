@@ -1,19 +1,19 @@
-import { useState } from "react"
-import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react"
+import { useState } from "react";
+import { Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
 
-import type { Person } from "@/entities/movies"
+import type { Person } from "@/entities/movies";
 
 interface ActorCardProps {
-  person: Person
+  person: Person;
 }
 
 export const ActorCard = ({ person }: ActorCardProps) => {
-  const [openPopover, setOpenPopover] = useState(false)
+  const [openPopover, setOpenPopover] = useState(false);
 
   const triggers = {
     onMouseEnter: () => setOpenPopover(true),
     onMouseLeave: () => setOpenPopover(false)
-  }
+  };
 
   return (
     <>
@@ -41,5 +41,5 @@ export const ActorCard = ({ person }: ActorCardProps) => {
         </Popover>
       </li>
     </>
-  )
-}
+  );
+};

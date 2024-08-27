@@ -1,11 +1,11 @@
 export interface FilterApiParams {
-  field: string
+  field: string;
 }
 
-export type FilterApiResponse = FilterType[]
+export type FilterApiResponse = FilterType[];
 export interface FilterType {
-  name?: string
-  slug?: string
+  name?: string;
+  slug?: string;
 }
 
 export enum FILTER_TYPES {

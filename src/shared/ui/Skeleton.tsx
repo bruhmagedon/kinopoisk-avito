@@ -1,7 +1,7 @@
 interface SkeletonProps {
-  type?: string
-  count?: number
-  direction?: "column" | "row"
+  type?: string;
+  count?: number;
+  direction?: "column" | "row";
 }
 
 export const Skeleton = ({ type, count, direction = "row" }: SkeletonProps) => {
@@ -14,7 +14,7 @@ export const Skeleton = ({ type, count, direction = "row" }: SkeletonProps) => {
           }
         >
           {[...Array(count)].map((_, index) => {
-            return <li key={index} className='skeleton h-[80px] rounded-lg bg-gray-600'></li>
+            return <li key={index} className='skeleton h-[80px] rounded-lg bg-gray-600'></li>;
           })}
         </ul>
       ) : (
@@ -23,5 +23,5 @@ export const Skeleton = ({ type, count, direction = "row" }: SkeletonProps) => {
         ></li>
       )}
     </>
-  )
-}
+  );
+};

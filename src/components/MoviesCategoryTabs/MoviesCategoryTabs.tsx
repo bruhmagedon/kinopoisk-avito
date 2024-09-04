@@ -9,19 +9,41 @@ interface MoviesCategoryTabsProps {
   className?: string;
 }
 
+const TabsConfig = [
+  {
+    value: "movie",
+    name: "Фильмы"
+  },
+  {
+    value: "tv-series",
+    name: "Сериалы"
+  },
+  {
+    value: "anime",
+    name: "Аниме"
+  },
+  {
+    value: "cartoon",
+    name: "Мультфильмы"
+  }
+];
+
 export const MoviesCategoryTabs = ({ className }: MoviesCategoryTabsProps) => {
   return (
-    <header className={cn("", className)}>
-      <Button>
+    <header className={cn("flex items-center justify-between gap-9 p-1", className)}>
+      {/* <Button>
         <PanelLeft />
-      </Button>
-      <TabsList>
-        <TabsTrigger value='account'>Account</TabsTrigger>
-        <TabsTrigger value='password'>Password</TabsTrigger>
+      </Button> */}
+      <TabsList className='flex-1 items-start rounded-2xl'>
+        {TabsConfig.map((tab) => (
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.name}
+          </TabsTrigger>
+        ))}
       </TabsList>
-      <Button>
+      {/* <Button>
         <PanelRight />
-      </Button>
+      </Button> */}
     </header>
   );
 };

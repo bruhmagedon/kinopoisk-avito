@@ -9,7 +9,7 @@ import type {
   ReviewParamsType,
   SeriesApiResponse
 } from "../model/MovieApiTypes";
-import type { MovieIdApiResponse } from "../model/MovieTypes";
+import type { Movie } from "../model/MovieTypes";
 
 // TODO Повторяется, вынести в константу в отдельный файл
 const X_API_KEY = import.meta.env.VITE_KINOPOISK_API_KEY;
@@ -61,7 +61,7 @@ export const movieApi = createApi({
         }
       }
     }),
-    fetchMovieById: builder.query<MovieIdApiResponse, MovieId>({
+    fetchMovieById: builder.query<Movie, MovieId>({
       query: (params) => {
         const { id } = params;
         return {

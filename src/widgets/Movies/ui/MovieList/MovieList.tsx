@@ -1,9 +1,9 @@
-import type { MovieIdApiResponse } from "@/entities/movies";
+import type { Movie } from "@/entities/movies";
 
 import { MovieCard } from "../MovieCard/MovieCard";
 
 interface MovieListProps {
-  data?: MovieIdApiResponse[];
+  data?: Movie[];
 }
 
 export const MovieList = ({ data: docs }: MovieListProps) => {

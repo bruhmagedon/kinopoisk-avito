@@ -10,7 +10,7 @@ interface CarouselProps {
   isLoading?: boolean;
 }
 
-export const Carousel = ({ posters, isLoading, similarMovie }: CarouselProps) => {
+const Carousel = ({ posters, isLoading, similarMovie }: CarouselProps) => {
   if (isLoading) {
     return <div>Загрузка</div>;
   }

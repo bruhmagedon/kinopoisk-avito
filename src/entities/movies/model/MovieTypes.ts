@@ -1,8 +1,8 @@
-export interface MovieIdApiResponseDoc {
-  docs: MovieIdApiResponse[];
+export interface MovieList {
+  docs: Movie[];
 }
 
-export interface MovieIdApiResponse {
+export interface Movie {
   id: number; // Id фильма с кинопоиска
   externalId?: ExternalId | null;
   name?: string | null;
@@ -52,23 +52,27 @@ export interface MovieIdApiResponse {
   imagesInfo?: ImagesInfo | null;
 }
 
-interface ExternalId {
+export interface ExternalId {
   kpHD?: string | null; // ID из kinopoisk HD
   imdb?: string | null;
   tmdb?: number | null;
 }
 
-interface Names {
+export interface Names {
   name?: string | null;
   language?: string | null;
   type?: string | null;
+  $set?: {
+    language?: string | null;
+    type?: string | null;
+  };
 }
 
-type Type = "movie" | "tv-series" | "cartoon" | "anime" | "animated-series" | "tv-show";
+export type Type = "movie" | "tv-series" | "cartoon" | "anime" | "animated-series" | "tv-show";
 
-type Status = "filming" | "pre-production" | "completed" | "announced" | "post-production";
+export type Status = "filming" | "pre-production" | "completed" | "announced" | "post-production";
 
-interface Rating {
+export interface Rating {
   kp?: number | null; // Рейтинг кинопоиска
   imdb?: number | null; // Рейтинг IMDB
   tmdb?: number | null; // Рейтинг TMDB
@@ -77,7 +81,7 @@ interface Rating {
   await?: number | null; // Рейтинг основанный на ожиданиях пользователей
 }
 
-interface Votes {
+export interface Votes {
   kp?: number | string | null;
   imdb?: number | null;
   tmdb?: number | null;
@@ -86,21 +90,22 @@ interface Votes {
   await?: number | null; // Количество ожидающих выхода
 }
 
-interface Logo {
-  url?: string | null;
-}
-
-interface Poster {
+export interface Logo {
   url?: string | null;
   previewUrl?: string | null;
 }
 
-interface Videos {
+export interface Poster {
+  url?: string | null;
+  previewUrl?: string | null;
+}
+
+export interface Videos {
   trailers?: Video[] | null;
   teasers?: Video[] | null;
 }
 
-interface Video {
+export interface Video {
   url?: string | null; // Url трейлера
   name?: string | null;
   site?: string | null;
@@ -108,11 +113,11 @@ interface Video {
   size: number;
 }
 
-interface Genre {
+export interface Genre {
   name?: string | null;
 }
 
-interface Country {
+export interface Country {
   name?: string | null;
 }
 
@@ -126,29 +131,29 @@ export interface Person {
   enProfession: string;
 }
 
-interface ReviewInfo {
+export interface ReviewInfo {
   count?: number | null;
   positiveCount?: number | null;
   percentage?: string | null;
 }
 
-interface SeasonInfo {
+export interface SeasonInfo {
   number?: number | null;
   episodesCount?: number | null;
 }
 
-interface Budget {
+export interface Budget {
   value?: number | null; // Сумма
   currency?: string | null; // Валюта
 }
 
-interface Fees {
+export interface Fees {
   world?: Budget | null;
   russia?: Budget | null;
   usa?: Budget | null;
 }
 
-interface Premiere {
+export interface Premiere {
   country?: string | null;
   world?: string | null; // № 01.02.2022-01.02.2023 типизировать
   russia?: string | null; // № 01.02.2022-01.02.2023 типизировать
@@ -169,7 +174,7 @@ export interface SimilarMovie {
   poster: Poster;
 }
 
-interface SequelOrPrequel {
+export interface SequelOrPrequel {
   id?: number | null;
   rating: Rating;
   year: number;
@@ -180,34 +185,34 @@ interface SequelOrPrequel {
   poster: Poster;
 }
 
-interface WatchabilityItem {
+export interface WatchabilityItem {
   name?: string | null;
   logo: Logo;
   url: string;
 }
 
-interface ReleaseYears {
+export interface ReleaseYears {
   start?: number | null;
   end?: number | null;
 }
 
-interface Audience {
+export interface Audience {
   count: number; // Количество просмотров в кино
   country: string; // Страна в которой проходил показ
 }
 
-interface Network {
+export interface Network {
   name: string;
   logo: Logo;
 }
 
-interface Fact {
+export interface Fact {
   value: string;
   type: string;
   spoiler: boolean;
 }
 
-interface ImagesInfo {
+export interface ImagesInfo {
   postersCount: number;
   backdropsCount: number;
   framesCount: number;

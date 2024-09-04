@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import type { MovieIdApiResponse } from "@/entities/movies";
+import type { Movie } from "@/entities/movies";
 
 interface SearchResulListProps {
-  data: MovieIdApiResponse[];
+  data: Movie[];
 }
 
 export const SearchResulList = ({ data }: SearchResulListProps) => {
@@ -23,7 +23,7 @@ export const SearchResulList = ({ data }: SearchResulListProps) => {
   );
 };
 
-export const SearchResulCard = ({ movie }: { movie: MovieIdApiResponse }) => {
+export const SearchResulCard = ({ movie }: { movie: Movie }) => {
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate(`/movie/${movie.id}`);
@@ -32,7 +32,7 @@ export const SearchResulCard = ({ movie }: { movie: MovieIdApiResponse }) => {
   const cover = movie.poster?.url ?? "https://st.kp.yandex.net/images/no-poster.gif";
   return (
     <div
-      className='flex cursor-pointer gap-8 p-3 text-white hover:bg-input-bg'
+      className='hover:bg-input-bg flex cursor-pointer gap-8 p-3 text-white'
       onClick={onNavigate}
     >
       <img src={cover} alt='Фотография' className='h-[50px] w-[35px] rounded-lg object-cover' />

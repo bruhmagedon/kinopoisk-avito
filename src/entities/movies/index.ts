@@ -13,12 +13,12 @@ import type {
   PostersApiResponse,
   SeriesApiResponse
 } from "./model/MovieApiTypes";
-import type { MovieIdApiResponse, Person } from "./model/MovieTypes";
+import type { Movie, Person } from "./model/MovieTypes";
 
 export {
   movieApi,
   MovieId,
-  MovieIdApiResponse,
+  Movie,
   MoviesApiResponse,
   Person,
   PostersApiResponse,

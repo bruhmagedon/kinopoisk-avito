@@ -1,23 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import { RouterProvider } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
 
-import { appRouter } from "./app/AppRouter";
-import { ThemeProvider } from "./app/providers/ThemeProvider/ThemeProvider";
-import { store } from "./app/store/store";
+import { appRouter } from './app/providers/router/AppRouter';
+import { ThemeProvider } from './app/providers/ThemeProvider/ThemeProvider';
 
-// import { createRoot } from "react-dom/client";
-// import { RouterProvider } from "react-router-dom";
-// import { Provider } from "react-redux";
-// import { store } from "@/app/store/store";
-// import { appRouter } from "./app/AppRouter";
-import "./style.css";
+import './app/styles/index.scss';
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Provider store={store}>
-    <ThemeProvider>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+   // <Provider store={store}>
+   <ThemeProvider>
       <RouterProvider router={appRouter} />
-    </ThemeProvider>
-  </Provider>
+   </ThemeProvider>,
+   // </Provider>
 );

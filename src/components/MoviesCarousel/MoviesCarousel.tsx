@@ -1,14 +1,13 @@
 import { useMemo } from "react";
+import { cn } from "old/shared/lib/utils";
 
 import { fetchCarouselQuery } from "@/constants/mock/fetchCarouselQuery";
-import { cn } from "@/lib/utils";
 
 import {
   MovieCard,
   MovieCardContent,
   MovieCardDescription,
   MovieCardFooter,
-  MovieCardHeader,
   MovieCardTitle
 } from "../MovieCard/MovieCard";
 import {

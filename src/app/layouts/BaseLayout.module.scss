@@ -1,0 +1,6 @@
+@import '@/app/styles/variables/global.scss';
+.layout {
+   background-color: rgb(180 83 9);
+   //    width: rem(64);
+   background-color: var(--primary);
+}

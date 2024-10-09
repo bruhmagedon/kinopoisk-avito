@@ -1,4 +1,4 @@
-import type { MovieList } from "@/entities/movies/model/MovieTypes";
+import type { MovieList } from "old/entities/movies/model/MovieTypes";
 
 export const fetchMovieQuery: MovieList = {
   docs: [

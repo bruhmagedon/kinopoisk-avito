@@ -1,0 +1,64 @@
+import { useState } from "react";
+import { useFetchReviewQuery } from "old/entities/movies";
+import type { ReviewData } from "old/entities/movies/model/MovieApiTypes";
+import { PaginationWrapper } from "old/features/pagination";
+
+import { ReviewCard } from "../ReviewCard/ReviewCard";
+
+interface ReviewPaginationProps {
+  movieId: string;
+}
+
+export const ReviewPagination = ({ movieId }: ReviewPaginationProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit] = useState(4);
+
+  const { data, isLoading } = useFetchReviewQuery({
+    movieId,
+    limit,
+    page: currentPage
+  });
+
+  if (isLoading) {
+    return <div>Загрузка</div>;
+  }
+
+  if (data.docs.length > 0) {
+    return (
+      <div className='flex flex-1 flex-col gap-5 max-sm:p-5'>
+        <h2 className='font-medium max-sm:p-4'>Отзывы</h2>
+        <div className='flex flex-col gap-4'>
+          <PaginationWrapper
+            limit={limit}
+            siblings={1}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={data.pages}
+            type='small'
+          >
+            <ReviewPaginationList isLoading={isLoading} rewiews={data.docs} />
+          </PaginationWrapper>
+        </div>
+      </div>
+    );
+  }
+};
+
+interface ReviewPaginationListProps {
+  rewiews: ReviewData[];
+  isLoading: boolean;
+}
+
+const ReviewPaginationList = ({ rewiews, isLoading }: ReviewPaginationListProps) => {
+  if (isLoading) {
+    return <div>Загрузка</div>;
+  }
+
+  return (
+    <ul className='grid grid-rows-4 gap-[24px]'>
+      {rewiews.map((review) => {
+        return <ReviewCard review={review} key={review.id} />;
+      })}
+    </ul>
+  );
+};

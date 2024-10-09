@@ -1,8 +1,7 @@
 import React from "react";
-
-import type { Movie } from "@/entities/movies";
-import type { Genre } from "@/entities/movies/model/MovieTypes";
-import { cn } from "@/lib/utils";
+import type { Movie } from "old/entities/movies";
+import type { Genre } from "old/entities/movies/model/MovieTypes";
+import { cn } from "old/shared/lib/utils";
 
 import { CardFooter, CardHeader } from "../ui/card";
 
@@ -46,7 +45,7 @@ const MovieCardContent = React.forwardRef<HTMLDivElement, MovieCardContentProps>
     >
       <ul className='flex gap-5'>
         {genres?.map(({ name }) => (
-          <li className={"rounded-lg bg-white px-3 py-1 text-sm font-medium text-black"} key={name}>
+          <li className='rounded-lg bg-white px-3 py-1 text-sm font-medium text-black' key={name}>
             {name}
           </li>
         ))}

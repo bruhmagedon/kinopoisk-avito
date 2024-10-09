@@ -1,8 +1,5 @@
-import { PanelLeft, PanelRight } from "lucide-react";
+import { cn } from "old/shared/lib/utils";
 
-import { cn } from "@/lib/utils";
-
-import { Button } from "../ui/button";
 import { TabsList, TabsTrigger } from "../ui/tabs";
 
 interface MoviesCategoryTabsProps {

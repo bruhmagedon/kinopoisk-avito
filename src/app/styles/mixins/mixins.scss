@@ -1,0 +1,82 @@
+@mixin list-reset() {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin margin-padding-reset() {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin button-reset() {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+@mixin scrollbar() {
+  scrollbar-width: thin;
+  scrollbar-color: #e4e5e8;
+
+  &::-webkit-scrollbar {
+    width: rem(3);
+    height: rem(3);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #e4e5e8;
+  }
+}
+
+@mixin flexbox($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin scrollBar($color-track, $color-thumb, $width: rem(10), $height: rem(10)) {
+  // firefox
+  scrollbar-width: thin; /* "auto" или "thin"  */
+  scrollbar-color: $color-track $color-thumb;
+
+  &::-webkit-scrollbar {
+    width: $width; /* ширина scrollbar */
+    height: $height;
+  }
+  &::-webkit-scrollbar-track {
+    background: $color-track; /* цвет дорожки */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-thumb; /* цвет плашки */
+    border: 0 solid #fff; /* padding вокруг плашки */
+  }
+}
+
+@mixin mediaMax($mediaWidth) {
+  @media only screen and (max-width: ($mediaWidth - 1)) {
+    @content;
+  }
+}
+
+@mixin mediaMin($mediaWidth) {
+  @media only screen and (min-width: $mediaWidth) {
+    @content;
+  }
+}
+
+@mixin mediaDistance($mediaWidthMin, $mediaWidthMax) {
+  @media only screen and (min-width: $mediaWidthMin) and (max-width: ($mediaWidthMax - 1)) {
+    @content;
+  }
+}
+
+@mixin isLoading($duration: 0s, $bgc: #dedede, $gradientFirst: #f1f1f1, $gradientSecond: #d5d5d5) {
+  background: $bgc;
+  background: linear-gradient(110deg, $gradientSecond 8%, $gradientFirst 18%, $gradientSecond 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine $duration linear infinite;
+}

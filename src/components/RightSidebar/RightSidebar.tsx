@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "old/shared/lib/utils";
 
 import { Input } from "../ui/input";
 

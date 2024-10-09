@@ -1,8 +1,8 @@
 import { ChevronLeft, ChevronRight, Milk } from "lucide-react";
+import { cn } from "old/shared/lib/utils";
 
 import { useTheme } from "@/app/providers/ThemeProvider/useTheme";
 import { useCollapse } from "@/hooks/useCollapse";
-import { cn } from "@/lib/utils";
 
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import { SidebarItemsList } from "../SidebarItem/SidebarItemsList";

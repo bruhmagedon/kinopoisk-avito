@@ -1,4 +1,4 @@
-import tailwindcss from "tailwindcss";
+import tailwindcss from 'tailwindcss';
 export default {
-  plugins: ["postcss-preset-env", tailwindcss],
+   plugins: ['postcss-preset-env', tailwindcss],
 };
